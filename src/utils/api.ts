@@ -21,16 +21,12 @@ export const requester = async <R, V>(
 ): Promise<R> => {
 	return execute<R, V>({ query: print(doc), variables: vars });
 	/*.then( async (response) => {
-    return { ...response.data }
-  })*/
+			return { ...response.data }
+		})*/
 };
 
-export const execute = async <R, V>(body: {
-	query: string;
-	variables?: V;
-}): Promise<GraphqlResponse<> & { headers: Headers }> => {
-	const headers = createHeaders();
-	const options = { method: 'POST', headers, body: JSON.stringify(body) };
+export const execute = async <R, V>(body: { query: string; variables?: V }): Promise<R> => {
+	const options = { method: 'POST', headers: createHeaders(), body: JSON.stringify(body) };
 
 	const response: ResponseProps<R> = isBrowser
 		? await executeOnTheServer(options)
@@ -40,7 +36,7 @@ export const execute = async <R, V>(body: {
 		setCookie(AUTH_TOKEN, response.token, 365);
 	}
 
-	return { data: response.data, headers };
+	return response.data;
 };
 
 const createHeaders = () => {
