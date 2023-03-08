@@ -1,8 +1,6 @@
 import { $, component$, useSignal } from '@builder.io/qwik';
 import XCircleIcon from '~/components/icons/XCircleIcon';
-import { loginMutation } from '~/graphql/mutations';
-import { Login } from '~/types';
-import { execute } from '~/utils/api';
+import { login as loginApi } from '~/providers/account/account';
 
 export default component$(() => {
 	const email = useSignal('');
@@ -11,13 +9,11 @@ export default component$(() => {
 	const error = useSignal('');
 
 	const login = $(async () => {
-		const { login } = await execute<{ login: Login }>(
-			loginMutation(email.value, password.value, rememberMe.value)
-		);
-		if (login.__typename === 'CurrentUser') {
+		const result = await loginApi(email.value, password.value, rememberMe.value);
+		if (result.__typename === 'CurrentUser') {
 			window.location.href = '/account';
 		} else {
-			error.value = login.message;
+			error.value = result.message;
 		}
 	});
 	return (

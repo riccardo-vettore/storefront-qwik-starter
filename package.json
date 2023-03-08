@@ -16,11 +16,16 @@
 		"prepare": "husky install",
 		"preview": "qwik build preview && vite preview --open",
 		"start": "vite --open --mode ssr",
-		"qwik": "qwik"
+		"qwik": "qwik",
+		"generate": "graphql-codegen --config codegen.yml"
 	},
 	"devDependencies": {
 		"@builder.io/qwik": "0.20.1",
 		"@builder.io/qwik-city": "0.5.2",
+		"@graphql-codegen/cli": "^3.2.1",
+		"@graphql-codegen/introspection": "^3.0.1",
+		"@graphql-codegen/typescript": "^3.0.1",
+		"@graphql-codegen/typescript-operations": "^3.0.1",
 		"@tailwindcss/forms": "^0.5.3",
 		"@types/eslint": "8.21.1",
 		"@types/node": "latest",
@@ -48,6 +53,9 @@
 	"private": true,
 	"type": "module",
 	"dependencies": {
+		"@graphql-codegen/typescript-generic-sdk": "^3.1.0",
+		"graphql": "^16.6.0",
+		"graphql-tag": "^2.12.6",
 		"undici": "^5.20.0",
 		"zod": "^3.20.6"
 	}
