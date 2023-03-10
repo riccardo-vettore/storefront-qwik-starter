@@ -58,12 +58,13 @@ export type Adjustment = {
 	type: AdjustmentType;
 };
 
-export enum AdjustmentType {
-	DistributedOrderPromotion = 'DISTRIBUTED_ORDER_PROMOTION',
-	Other = 'OTHER',
-	Promotion = 'PROMOTION',
-}
+export const AdjustmentType = {
+	DistributedOrderPromotion: 'DISTRIBUTED_ORDER_PROMOTION',
+	Other: 'OTHER',
+	Promotion: 'PROMOTION',
+} as const;
 
+export type AdjustmentType = (typeof AdjustmentType)[keyof typeof AdjustmentType];
 /** Returned when attempting to set the Customer for an Order when already logged in. */
 export type AlreadyLoggedInError = ErrorResult & {
 	__typename?: 'AlreadyLoggedInError';
@@ -100,12 +101,13 @@ export type AssetList = PaginatedList & {
 	totalItems: Scalars['Int'];
 };
 
-export enum AssetType {
-	Binary = 'BINARY',
-	Image = 'IMAGE',
-	Video = 'VIDEO',
-}
+export const AssetType = {
+	Binary: 'BINARY',
+	Image: 'IMAGE',
+	Video: 'VIDEO',
+} as const;
 
+export type AssetType = (typeof AssetType)[keyof typeof AssetType];
 export type AuthenticationInput = {
 	native?: InputMaybe<NativeAuthInput>;
 };
@@ -383,323 +385,324 @@ export type CreateCustomerInput = {
  *
  * @docsCategory common
  */
-export enum CurrencyCode {
+export const CurrencyCode = {
 	/** United Arab Emirates dirham */
-	Aed = 'AED',
+	Aed: 'AED',
 	/** Afghan afghani */
-	Afn = 'AFN',
+	Afn: 'AFN',
 	/** Albanian lek */
-	All = 'ALL',
+	All: 'ALL',
 	/** Armenian dram */
-	Amd = 'AMD',
+	Amd: 'AMD',
 	/** Netherlands Antillean guilder */
-	Ang = 'ANG',
+	Ang: 'ANG',
 	/** Angolan kwanza */
-	Aoa = 'AOA',
+	Aoa: 'AOA',
 	/** Argentine peso */
-	Ars = 'ARS',
+	Ars: 'ARS',
 	/** Australian dollar */
-	Aud = 'AUD',
+	Aud: 'AUD',
 	/** Aruban florin */
-	Awg = 'AWG',
+	Awg: 'AWG',
 	/** Azerbaijani manat */
-	Azn = 'AZN',
+	Azn: 'AZN',
 	/** Bosnia and Herzegovina convertible mark */
-	Bam = 'BAM',
+	Bam: 'BAM',
 	/** Barbados dollar */
-	Bbd = 'BBD',
+	Bbd: 'BBD',
 	/** Bangladeshi taka */
-	Bdt = 'BDT',
+	Bdt: 'BDT',
 	/** Bulgarian lev */
-	Bgn = 'BGN',
+	Bgn: 'BGN',
 	/** Bahraini dinar */
-	Bhd = 'BHD',
+	Bhd: 'BHD',
 	/** Burundian franc */
-	Bif = 'BIF',
+	Bif: 'BIF',
 	/** Bermudian dollar */
-	Bmd = 'BMD',
+	Bmd: 'BMD',
 	/** Brunei dollar */
-	Bnd = 'BND',
+	Bnd: 'BND',
 	/** Boliviano */
-	Bob = 'BOB',
+	Bob: 'BOB',
 	/** Brazilian real */
-	Brl = 'BRL',
+	Brl: 'BRL',
 	/** Bahamian dollar */
-	Bsd = 'BSD',
+	Bsd: 'BSD',
 	/** Bhutanese ngultrum */
-	Btn = 'BTN',
+	Btn: 'BTN',
 	/** Botswana pula */
-	Bwp = 'BWP',
+	Bwp: 'BWP',
 	/** Belarusian ruble */
-	Byn = 'BYN',
+	Byn: 'BYN',
 	/** Belize dollar */
-	Bzd = 'BZD',
+	Bzd: 'BZD',
 	/** Canadian dollar */
-	Cad = 'CAD',
+	Cad: 'CAD',
 	/** Congolese franc */
-	Cdf = 'CDF',
+	Cdf: 'CDF',
 	/** Swiss franc */
-	Chf = 'CHF',
+	Chf: 'CHF',
 	/** Chilean peso */
-	Clp = 'CLP',
+	Clp: 'CLP',
 	/** Renminbi (Chinese) yuan */
-	Cny = 'CNY',
+	Cny: 'CNY',
 	/** Colombian peso */
-	Cop = 'COP',
+	Cop: 'COP',
 	/** Costa Rican colon */
-	Crc = 'CRC',
+	Crc: 'CRC',
 	/** Cuban convertible peso */
-	Cuc = 'CUC',
+	Cuc: 'CUC',
 	/** Cuban peso */
-	Cup = 'CUP',
+	Cup: 'CUP',
 	/** Cape Verde escudo */
-	Cve = 'CVE',
+	Cve: 'CVE',
 	/** Czech koruna */
-	Czk = 'CZK',
+	Czk: 'CZK',
 	/** Djiboutian franc */
-	Djf = 'DJF',
+	Djf: 'DJF',
 	/** Danish krone */
-	Dkk = 'DKK',
+	Dkk: 'DKK',
 	/** Dominican peso */
-	Dop = 'DOP',
+	Dop: 'DOP',
 	/** Algerian dinar */
-	Dzd = 'DZD',
+	Dzd: 'DZD',
 	/** Egyptian pound */
-	Egp = 'EGP',
+	Egp: 'EGP',
 	/** Eritrean nakfa */
-	Ern = 'ERN',
+	Ern: 'ERN',
 	/** Ethiopian birr */
-	Etb = 'ETB',
+	Etb: 'ETB',
 	/** Euro */
-	Eur = 'EUR',
+	Eur: 'EUR',
 	/** Fiji dollar */
-	Fjd = 'FJD',
+	Fjd: 'FJD',
 	/** Falkland Islands pound */
-	Fkp = 'FKP',
+	Fkp: 'FKP',
 	/** Pound sterling */
-	Gbp = 'GBP',
+	Gbp: 'GBP',
 	/** Georgian lari */
-	Gel = 'GEL',
+	Gel: 'GEL',
 	/** Ghanaian cedi */
-	Ghs = 'GHS',
+	Ghs: 'GHS',
 	/** Gibraltar pound */
-	Gip = 'GIP',
+	Gip: 'GIP',
 	/** Gambian dalasi */
-	Gmd = 'GMD',
+	Gmd: 'GMD',
 	/** Guinean franc */
-	Gnf = 'GNF',
+	Gnf: 'GNF',
 	/** Guatemalan quetzal */
-	Gtq = 'GTQ',
+	Gtq: 'GTQ',
 	/** Guyanese dollar */
-	Gyd = 'GYD',
+	Gyd: 'GYD',
 	/** Hong Kong dollar */
-	Hkd = 'HKD',
+	Hkd: 'HKD',
 	/** Honduran lempira */
-	Hnl = 'HNL',
+	Hnl: 'HNL',
 	/** Croatian kuna */
-	Hrk = 'HRK',
+	Hrk: 'HRK',
 	/** Haitian gourde */
-	Htg = 'HTG',
+	Htg: 'HTG',
 	/** Hungarian forint */
-	Huf = 'HUF',
+	Huf: 'HUF',
 	/** Indonesian rupiah */
-	Idr = 'IDR',
+	Idr: 'IDR',
 	/** Israeli new shekel */
-	Ils = 'ILS',
+	Ils: 'ILS',
 	/** Indian rupee */
-	Inr = 'INR',
+	Inr: 'INR',
 	/** Iraqi dinar */
-	Iqd = 'IQD',
+	Iqd: 'IQD',
 	/** Iranian rial */
-	Irr = 'IRR',
+	Irr: 'IRR',
 	/** Icelandic króna */
-	Isk = 'ISK',
+	Isk: 'ISK',
 	/** Jamaican dollar */
-	Jmd = 'JMD',
+	Jmd: 'JMD',
 	/** Jordanian dinar */
-	Jod = 'JOD',
+	Jod: 'JOD',
 	/** Japanese yen */
-	Jpy = 'JPY',
+	Jpy: 'JPY',
 	/** Kenyan shilling */
-	Kes = 'KES',
+	Kes: 'KES',
 	/** Kyrgyzstani som */
-	Kgs = 'KGS',
+	Kgs: 'KGS',
 	/** Cambodian riel */
-	Khr = 'KHR',
+	Khr: 'KHR',
 	/** Comoro franc */
-	Kmf = 'KMF',
+	Kmf: 'KMF',
 	/** North Korean won */
-	Kpw = 'KPW',
+	Kpw: 'KPW',
 	/** South Korean won */
-	Krw = 'KRW',
+	Krw: 'KRW',
 	/** Kuwaiti dinar */
-	Kwd = 'KWD',
+	Kwd: 'KWD',
 	/** Cayman Islands dollar */
-	Kyd = 'KYD',
+	Kyd: 'KYD',
 	/** Kazakhstani tenge */
-	Kzt = 'KZT',
+	Kzt: 'KZT',
 	/** Lao kip */
-	Lak = 'LAK',
+	Lak: 'LAK',
 	/** Lebanese pound */
-	Lbp = 'LBP',
+	Lbp: 'LBP',
 	/** Sri Lankan rupee */
-	Lkr = 'LKR',
+	Lkr: 'LKR',
 	/** Liberian dollar */
-	Lrd = 'LRD',
+	Lrd: 'LRD',
 	/** Lesotho loti */
-	Lsl = 'LSL',
+	Lsl: 'LSL',
 	/** Libyan dinar */
-	Lyd = 'LYD',
+	Lyd: 'LYD',
 	/** Moroccan dirham */
-	Mad = 'MAD',
+	Mad: 'MAD',
 	/** Moldovan leu */
-	Mdl = 'MDL',
+	Mdl: 'MDL',
 	/** Malagasy ariary */
-	Mga = 'MGA',
+	Mga: 'MGA',
 	/** Macedonian denar */
-	Mkd = 'MKD',
+	Mkd: 'MKD',
 	/** Myanmar kyat */
-	Mmk = 'MMK',
+	Mmk: 'MMK',
 	/** Mongolian tögrög */
-	Mnt = 'MNT',
+	Mnt: 'MNT',
 	/** Macanese pataca */
-	Mop = 'MOP',
+	Mop: 'MOP',
 	/** Mauritanian ouguiya */
-	Mru = 'MRU',
+	Mru: 'MRU',
 	/** Mauritian rupee */
-	Mur = 'MUR',
+	Mur: 'MUR',
 	/** Maldivian rufiyaa */
-	Mvr = 'MVR',
+	Mvr: 'MVR',
 	/** Malawian kwacha */
-	Mwk = 'MWK',
+	Mwk: 'MWK',
 	/** Mexican peso */
-	Mxn = 'MXN',
+	Mxn: 'MXN',
 	/** Malaysian ringgit */
-	Myr = 'MYR',
+	Myr: 'MYR',
 	/** Mozambican metical */
-	Mzn = 'MZN',
+	Mzn: 'MZN',
 	/** Namibian dollar */
-	Nad = 'NAD',
+	Nad: 'NAD',
 	/** Nigerian naira */
-	Ngn = 'NGN',
+	Ngn: 'NGN',
 	/** Nicaraguan córdoba */
-	Nio = 'NIO',
+	Nio: 'NIO',
 	/** Norwegian krone */
-	Nok = 'NOK',
+	Nok: 'NOK',
 	/** Nepalese rupee */
-	Npr = 'NPR',
+	Npr: 'NPR',
 	/** New Zealand dollar */
-	Nzd = 'NZD',
+	Nzd: 'NZD',
 	/** Omani rial */
-	Omr = 'OMR',
+	Omr: 'OMR',
 	/** Panamanian balboa */
-	Pab = 'PAB',
+	Pab: 'PAB',
 	/** Peruvian sol */
-	Pen = 'PEN',
+	Pen: 'PEN',
 	/** Papua New Guinean kina */
-	Pgk = 'PGK',
+	Pgk: 'PGK',
 	/** Philippine peso */
-	Php = 'PHP',
+	Php: 'PHP',
 	/** Pakistani rupee */
-	Pkr = 'PKR',
+	Pkr: 'PKR',
 	/** Polish złoty */
-	Pln = 'PLN',
+	Pln: 'PLN',
 	/** Paraguayan guaraní */
-	Pyg = 'PYG',
+	Pyg: 'PYG',
 	/** Qatari riyal */
-	Qar = 'QAR',
+	Qar: 'QAR',
 	/** Romanian leu */
-	Ron = 'RON',
+	Ron: 'RON',
 	/** Serbian dinar */
-	Rsd = 'RSD',
+	Rsd: 'RSD',
 	/** Russian ruble */
-	Rub = 'RUB',
+	Rub: 'RUB',
 	/** Rwandan franc */
-	Rwf = 'RWF',
+	Rwf: 'RWF',
 	/** Saudi riyal */
-	Sar = 'SAR',
+	Sar: 'SAR',
 	/** Solomon Islands dollar */
-	Sbd = 'SBD',
+	Sbd: 'SBD',
 	/** Seychelles rupee */
-	Scr = 'SCR',
+	Scr: 'SCR',
 	/** Sudanese pound */
-	Sdg = 'SDG',
+	Sdg: 'SDG',
 	/** Swedish krona/kronor */
-	Sek = 'SEK',
+	Sek: 'SEK',
 	/** Singapore dollar */
-	Sgd = 'SGD',
+	Sgd: 'SGD',
 	/** Saint Helena pound */
-	Shp = 'SHP',
+	Shp: 'SHP',
 	/** Sierra Leonean leone */
-	Sll = 'SLL',
+	Sll: 'SLL',
 	/** Somali shilling */
-	Sos = 'SOS',
+	Sos: 'SOS',
 	/** Surinamese dollar */
-	Srd = 'SRD',
+	Srd: 'SRD',
 	/** South Sudanese pound */
-	Ssp = 'SSP',
+	Ssp: 'SSP',
 	/** São Tomé and Príncipe dobra */
-	Stn = 'STN',
+	Stn: 'STN',
 	/** Salvadoran colón */
-	Svc = 'SVC',
+	Svc: 'SVC',
 	/** Syrian pound */
-	Syp = 'SYP',
+	Syp: 'SYP',
 	/** Swazi lilangeni */
-	Szl = 'SZL',
+	Szl: 'SZL',
 	/** Thai baht */
-	Thb = 'THB',
+	Thb: 'THB',
 	/** Tajikistani somoni */
-	Tjs = 'TJS',
+	Tjs: 'TJS',
 	/** Turkmenistan manat */
-	Tmt = 'TMT',
+	Tmt: 'TMT',
 	/** Tunisian dinar */
-	Tnd = 'TND',
+	Tnd: 'TND',
 	/** Tongan paʻanga */
-	Top = 'TOP',
+	Top: 'TOP',
 	/** Turkish lira */
-	Try = 'TRY',
+	Try: 'TRY',
 	/** Trinidad and Tobago dollar */
-	Ttd = 'TTD',
+	Ttd: 'TTD',
 	/** New Taiwan dollar */
-	Twd = 'TWD',
+	Twd: 'TWD',
 	/** Tanzanian shilling */
-	Tzs = 'TZS',
+	Tzs: 'TZS',
 	/** Ukrainian hryvnia */
-	Uah = 'UAH',
+	Uah: 'UAH',
 	/** Ugandan shilling */
-	Ugx = 'UGX',
+	Ugx: 'UGX',
 	/** United States dollar */
-	Usd = 'USD',
+	Usd: 'USD',
 	/** Uruguayan peso */
-	Uyu = 'UYU',
+	Uyu: 'UYU',
 	/** Uzbekistan som */
-	Uzs = 'UZS',
+	Uzs: 'UZS',
 	/** Venezuelan bolívar soberano */
-	Ves = 'VES',
+	Ves: 'VES',
 	/** Vietnamese đồng */
-	Vnd = 'VND',
+	Vnd: 'VND',
 	/** Vanuatu vatu */
-	Vuv = 'VUV',
+	Vuv: 'VUV',
 	/** Samoan tala */
-	Wst = 'WST',
+	Wst: 'WST',
 	/** CFA franc BEAC */
-	Xaf = 'XAF',
+	Xaf: 'XAF',
 	/** East Caribbean dollar */
-	Xcd = 'XCD',
+	Xcd: 'XCD',
 	/** CFA franc BCEAO */
-	Xof = 'XOF',
+	Xof: 'XOF',
 	/** CFP franc (franc Pacifique) */
-	Xpf = 'XPF',
+	Xpf: 'XPF',
 	/** Yemeni rial */
-	Yer = 'YER',
+	Yer: 'YER',
 	/** South African rand */
-	Zar = 'ZAR',
+	Zar: 'ZAR',
 	/** Zambian kwacha */
-	Zmw = 'ZMW',
+	Zmw: 'ZMW',
 	/** Zimbabwean dollar */
-	Zwl = 'ZWL',
-}
+	Zwl: 'ZWL',
+} as const;
 
+export type CurrencyCode = (typeof CurrencyCode)[keyof typeof CurrencyCode];
 export type CurrentUser = {
 	__typename?: 'CurrentUser';
 	channels: Array<CurrentUserChannel>;
@@ -857,13 +860,14 @@ export type DeletionResponse = {
 	result: DeletionResult;
 };
 
-export enum DeletionResult {
+export const DeletionResult = {
 	/** The entity was successfully deleted */
-	Deleted = 'DELETED',
+	Deleted: 'DELETED',
 	/** Deletion did not take place, reason given in message */
-	NotDeleted = 'NOT_DELETED',
-}
+	NotDeleted: 'NOT_DELETED',
+} as const;
 
+export type DeletionResult = (typeof DeletionResult)[keyof typeof DeletionResult];
 export type Discount = {
 	__typename?: 'Discount';
 	adjustmentSource: Scalars['String'];
@@ -880,38 +884,39 @@ export type EmailAddressConflictError = ErrorResult & {
 	message: Scalars['String'];
 };
 
-export enum ErrorCode {
-	AlreadyLoggedInError = 'ALREADY_LOGGED_IN_ERROR',
-	CouponCodeExpiredError = 'COUPON_CODE_EXPIRED_ERROR',
-	CouponCodeInvalidError = 'COUPON_CODE_INVALID_ERROR',
-	CouponCodeLimitError = 'COUPON_CODE_LIMIT_ERROR',
-	EmailAddressConflictError = 'EMAIL_ADDRESS_CONFLICT_ERROR',
-	IdentifierChangeTokenExpiredError = 'IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR',
-	IdentifierChangeTokenInvalidError = 'IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR',
-	IneligiblePaymentMethodError = 'INELIGIBLE_PAYMENT_METHOD_ERROR',
-	IneligibleShippingMethodError = 'INELIGIBLE_SHIPPING_METHOD_ERROR',
-	InsufficientStockError = 'INSUFFICIENT_STOCK_ERROR',
-	InvalidCredentialsError = 'INVALID_CREDENTIALS_ERROR',
-	MissingPasswordError = 'MISSING_PASSWORD_ERROR',
-	NativeAuthStrategyError = 'NATIVE_AUTH_STRATEGY_ERROR',
-	NegativeQuantityError = 'NEGATIVE_QUANTITY_ERROR',
-	NotVerifiedError = 'NOT_VERIFIED_ERROR',
-	NoActiveOrderError = 'NO_ACTIVE_ORDER_ERROR',
-	OrderLimitError = 'ORDER_LIMIT_ERROR',
-	OrderModificationError = 'ORDER_MODIFICATION_ERROR',
-	OrderPaymentStateError = 'ORDER_PAYMENT_STATE_ERROR',
-	OrderStateTransitionError = 'ORDER_STATE_TRANSITION_ERROR',
-	PasswordAlreadySetError = 'PASSWORD_ALREADY_SET_ERROR',
-	PasswordResetTokenExpiredError = 'PASSWORD_RESET_TOKEN_EXPIRED_ERROR',
-	PasswordResetTokenInvalidError = 'PASSWORD_RESET_TOKEN_INVALID_ERROR',
-	PasswordValidationError = 'PASSWORD_VALIDATION_ERROR',
-	PaymentDeclinedError = 'PAYMENT_DECLINED_ERROR',
-	PaymentFailedError = 'PAYMENT_FAILED_ERROR',
-	UnknownError = 'UNKNOWN_ERROR',
-	VerificationTokenExpiredError = 'VERIFICATION_TOKEN_EXPIRED_ERROR',
-	VerificationTokenInvalidError = 'VERIFICATION_TOKEN_INVALID_ERROR',
-}
+export const ErrorCode = {
+	AlreadyLoggedInError: 'ALREADY_LOGGED_IN_ERROR',
+	CouponCodeExpiredError: 'COUPON_CODE_EXPIRED_ERROR',
+	CouponCodeInvalidError: 'COUPON_CODE_INVALID_ERROR',
+	CouponCodeLimitError: 'COUPON_CODE_LIMIT_ERROR',
+	EmailAddressConflictError: 'EMAIL_ADDRESS_CONFLICT_ERROR',
+	IdentifierChangeTokenExpiredError: 'IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR',
+	IdentifierChangeTokenInvalidError: 'IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR',
+	IneligiblePaymentMethodError: 'INELIGIBLE_PAYMENT_METHOD_ERROR',
+	IneligibleShippingMethodError: 'INELIGIBLE_SHIPPING_METHOD_ERROR',
+	InsufficientStockError: 'INSUFFICIENT_STOCK_ERROR',
+	InvalidCredentialsError: 'INVALID_CREDENTIALS_ERROR',
+	MissingPasswordError: 'MISSING_PASSWORD_ERROR',
+	NativeAuthStrategyError: 'NATIVE_AUTH_STRATEGY_ERROR',
+	NegativeQuantityError: 'NEGATIVE_QUANTITY_ERROR',
+	NotVerifiedError: 'NOT_VERIFIED_ERROR',
+	NoActiveOrderError: 'NO_ACTIVE_ORDER_ERROR',
+	OrderLimitError: 'ORDER_LIMIT_ERROR',
+	OrderModificationError: 'ORDER_MODIFICATION_ERROR',
+	OrderPaymentStateError: 'ORDER_PAYMENT_STATE_ERROR',
+	OrderStateTransitionError: 'ORDER_STATE_TRANSITION_ERROR',
+	PasswordAlreadySetError: 'PASSWORD_ALREADY_SET_ERROR',
+	PasswordResetTokenExpiredError: 'PASSWORD_RESET_TOKEN_EXPIRED_ERROR',
+	PasswordResetTokenInvalidError: 'PASSWORD_RESET_TOKEN_INVALID_ERROR',
+	PasswordValidationError: 'PASSWORD_VALIDATION_ERROR',
+	PaymentDeclinedError: 'PAYMENT_DECLINED_ERROR',
+	PaymentFailedError: 'PAYMENT_FAILED_ERROR',
+	UnknownError: 'UNKNOWN_ERROR',
+	VerificationTokenExpiredError: 'VERIFICATION_TOKEN_EXPIRED_ERROR',
+	VerificationTokenInvalidError: 'VERIFICATION_TOKEN_INVALID_ERROR',
+} as const;
 
+export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];
 export type ErrorResult = {
 	errorCode: ErrorCode;
 	message: Scalars['String'];
@@ -1055,12 +1060,13 @@ export type FulfillmentLineSummary = {
 	quantity: Scalars['Int'];
 };
 
-export enum GlobalFlag {
-	False = 'FALSE',
-	Inherit = 'INHERIT',
-	True = 'TRUE',
-}
+export const GlobalFlag = {
+	False: 'FALSE',
+	Inherit: 'INHERIT',
+	True: 'TRUE',
+} as const;
 
+export type GlobalFlag = (typeof GlobalFlag)[keyof typeof GlobalFlag];
 export type HistoryEntry = Node & {
 	__typename?: 'HistoryEntry';
 	createdAt: Scalars['DateTime'];
@@ -1102,33 +1108,34 @@ export type HistoryEntrySortParameter = {
 	updatedAt?: InputMaybe<SortOrder>;
 };
 
-export enum HistoryEntryType {
-	CustomerAddedToGroup = 'CUSTOMER_ADDED_TO_GROUP',
-	CustomerAddressCreated = 'CUSTOMER_ADDRESS_CREATED',
-	CustomerAddressDeleted = 'CUSTOMER_ADDRESS_DELETED',
-	CustomerAddressUpdated = 'CUSTOMER_ADDRESS_UPDATED',
-	CustomerDetailUpdated = 'CUSTOMER_DETAIL_UPDATED',
-	CustomerEmailUpdateRequested = 'CUSTOMER_EMAIL_UPDATE_REQUESTED',
-	CustomerEmailUpdateVerified = 'CUSTOMER_EMAIL_UPDATE_VERIFIED',
-	CustomerNote = 'CUSTOMER_NOTE',
-	CustomerPasswordResetRequested = 'CUSTOMER_PASSWORD_RESET_REQUESTED',
-	CustomerPasswordResetVerified = 'CUSTOMER_PASSWORD_RESET_VERIFIED',
-	CustomerPasswordUpdated = 'CUSTOMER_PASSWORD_UPDATED',
-	CustomerRegistered = 'CUSTOMER_REGISTERED',
-	CustomerRemovedFromGroup = 'CUSTOMER_REMOVED_FROM_GROUP',
-	CustomerVerified = 'CUSTOMER_VERIFIED',
-	OrderCancellation = 'ORDER_CANCELLATION',
-	OrderCouponApplied = 'ORDER_COUPON_APPLIED',
-	OrderCouponRemoved = 'ORDER_COUPON_REMOVED',
-	OrderFulfillment = 'ORDER_FULFILLMENT',
-	OrderFulfillmentTransition = 'ORDER_FULFILLMENT_TRANSITION',
-	OrderModified = 'ORDER_MODIFIED',
-	OrderNote = 'ORDER_NOTE',
-	OrderPaymentTransition = 'ORDER_PAYMENT_TRANSITION',
-	OrderRefundTransition = 'ORDER_REFUND_TRANSITION',
-	OrderStateTransition = 'ORDER_STATE_TRANSITION',
-}
+export const HistoryEntryType = {
+	CustomerAddedToGroup: 'CUSTOMER_ADDED_TO_GROUP',
+	CustomerAddressCreated: 'CUSTOMER_ADDRESS_CREATED',
+	CustomerAddressDeleted: 'CUSTOMER_ADDRESS_DELETED',
+	CustomerAddressUpdated: 'CUSTOMER_ADDRESS_UPDATED',
+	CustomerDetailUpdated: 'CUSTOMER_DETAIL_UPDATED',
+	CustomerEmailUpdateRequested: 'CUSTOMER_EMAIL_UPDATE_REQUESTED',
+	CustomerEmailUpdateVerified: 'CUSTOMER_EMAIL_UPDATE_VERIFIED',
+	CustomerNote: 'CUSTOMER_NOTE',
+	CustomerPasswordResetRequested: 'CUSTOMER_PASSWORD_RESET_REQUESTED',
+	CustomerPasswordResetVerified: 'CUSTOMER_PASSWORD_RESET_VERIFIED',
+	CustomerPasswordUpdated: 'CUSTOMER_PASSWORD_UPDATED',
+	CustomerRegistered: 'CUSTOMER_REGISTERED',
+	CustomerRemovedFromGroup: 'CUSTOMER_REMOVED_FROM_GROUP',
+	CustomerVerified: 'CUSTOMER_VERIFIED',
+	OrderCancellation: 'ORDER_CANCELLATION',
+	OrderCouponApplied: 'ORDER_COUPON_APPLIED',
+	OrderCouponRemoved: 'ORDER_COUPON_REMOVED',
+	OrderFulfillment: 'ORDER_FULFILLMENT',
+	OrderFulfillmentTransition: 'ORDER_FULFILLMENT_TRANSITION',
+	OrderModified: 'ORDER_MODIFIED',
+	OrderNote: 'ORDER_NOTE',
+	OrderPaymentTransition: 'ORDER_PAYMENT_TRANSITION',
+	OrderRefundTransition: 'ORDER_REFUND_TRANSITION',
+	OrderStateTransition: 'ORDER_STATE_TRANSITION',
+} as const;
 
+export type HistoryEntryType = (typeof HistoryEntryType)[keyof typeof HistoryEntryType];
 /** Operators for filtering on a list of ID fields */
 export type IdListOperators = {
 	inList: Scalars['ID'];
@@ -1220,323 +1227,324 @@ export type InvalidCredentialsError = ErrorResult & {
  *
  * @docsCategory common
  */
-export enum LanguageCode {
+export const LanguageCode = {
 	/** Afrikaans */
-	Af = 'af',
+	Af: 'af',
 	/** Akan */
-	Ak = 'ak',
+	Ak: 'ak',
 	/** Amharic */
-	Am = 'am',
+	Am: 'am',
 	/** Arabic */
-	Ar = 'ar',
+	Ar: 'ar',
 	/** Assamese */
-	As = 'as',
+	As: 'as',
 	/** Azerbaijani */
-	Az = 'az',
+	Az: 'az',
 	/** Belarusian */
-	Be = 'be',
+	Be: 'be',
 	/** Bulgarian */
-	Bg = 'bg',
+	Bg: 'bg',
 	/** Bambara */
-	Bm = 'bm',
+	Bm: 'bm',
 	/** Bangla */
-	Bn = 'bn',
+	Bn: 'bn',
 	/** Tibetan */
-	Bo = 'bo',
+	Bo: 'bo',
 	/** Breton */
-	Br = 'br',
+	Br: 'br',
 	/** Bosnian */
-	Bs = 'bs',
+	Bs: 'bs',
 	/** Catalan */
-	Ca = 'ca',
+	Ca: 'ca',
 	/** Chechen */
-	Ce = 'ce',
+	Ce: 'ce',
 	/** Corsican */
-	Co = 'co',
+	Co: 'co',
 	/** Czech */
-	Cs = 'cs',
+	Cs: 'cs',
 	/** Church Slavic */
-	Cu = 'cu',
+	Cu: 'cu',
 	/** Welsh */
-	Cy = 'cy',
+	Cy: 'cy',
 	/** Danish */
-	Da = 'da',
+	Da: 'da',
 	/** German */
-	De = 'de',
+	De: 'de',
 	/** Austrian German */
-	DeAt = 'de_AT',
+	DeAt: 'de_AT',
 	/** Swiss High German */
-	DeCh = 'de_CH',
+	DeCh: 'de_CH',
 	/** Dzongkha */
-	Dz = 'dz',
+	Dz: 'dz',
 	/** Ewe */
-	Ee = 'ee',
+	Ee: 'ee',
 	/** Greek */
-	El = 'el',
+	El: 'el',
 	/** English */
-	En = 'en',
+	En: 'en',
 	/** Australian English */
-	EnAu = 'en_AU',
+	EnAu: 'en_AU',
 	/** Canadian English */
-	EnCa = 'en_CA',
+	EnCa: 'en_CA',
 	/** British English */
-	EnGb = 'en_GB',
+	EnGb: 'en_GB',
 	/** American English */
-	EnUs = 'en_US',
+	EnUs: 'en_US',
 	/** Esperanto */
-	Eo = 'eo',
+	Eo: 'eo',
 	/** Spanish */
-	Es = 'es',
+	Es: 'es',
 	/** European Spanish */
-	EsEs = 'es_ES',
+	EsEs: 'es_ES',
 	/** Mexican Spanish */
-	EsMx = 'es_MX',
+	EsMx: 'es_MX',
 	/** Estonian */
-	Et = 'et',
+	Et: 'et',
 	/** Basque */
-	Eu = 'eu',
+	Eu: 'eu',
 	/** Persian */
-	Fa = 'fa',
+	Fa: 'fa',
 	/** Dari */
-	FaAf = 'fa_AF',
+	FaAf: 'fa_AF',
 	/** Fulah */
-	Ff = 'ff',
+	Ff: 'ff',
 	/** Finnish */
-	Fi = 'fi',
+	Fi: 'fi',
 	/** Faroese */
-	Fo = 'fo',
+	Fo: 'fo',
 	/** French */
-	Fr = 'fr',
+	Fr: 'fr',
 	/** Canadian French */
-	FrCa = 'fr_CA',
+	FrCa: 'fr_CA',
 	/** Swiss French */
-	FrCh = 'fr_CH',
+	FrCh: 'fr_CH',
 	/** Western Frisian */
-	Fy = 'fy',
+	Fy: 'fy',
 	/** Irish */
-	Ga = 'ga',
+	Ga: 'ga',
 	/** Scottish Gaelic */
-	Gd = 'gd',
+	Gd: 'gd',
 	/** Galician */
-	Gl = 'gl',
+	Gl: 'gl',
 	/** Gujarati */
-	Gu = 'gu',
+	Gu: 'gu',
 	/** Manx */
-	Gv = 'gv',
+	Gv: 'gv',
 	/** Hausa */
-	Ha = 'ha',
+	Ha: 'ha',
 	/** Hebrew */
-	He = 'he',
+	He: 'he',
 	/** Hindi */
-	Hi = 'hi',
+	Hi: 'hi',
 	/** Croatian */
-	Hr = 'hr',
+	Hr: 'hr',
 	/** Haitian Creole */
-	Ht = 'ht',
+	Ht: 'ht',
 	/** Hungarian */
-	Hu = 'hu',
+	Hu: 'hu',
 	/** Armenian */
-	Hy = 'hy',
+	Hy: 'hy',
 	/** Interlingua */
-	Ia = 'ia',
+	Ia: 'ia',
 	/** Indonesian */
-	Id = 'id',
+	Id: 'id',
 	/** Igbo */
-	Ig = 'ig',
+	Ig: 'ig',
 	/** Sichuan Yi */
-	Ii = 'ii',
+	Ii: 'ii',
 	/** Icelandic */
-	Is = 'is',
+	Is: 'is',
 	/** Italian */
-	It = 'it',
+	It: 'it',
 	/** Japanese */
-	Ja = 'ja',
+	Ja: 'ja',
 	/** Javanese */
-	Jv = 'jv',
+	Jv: 'jv',
 	/** Georgian */
-	Ka = 'ka',
+	Ka: 'ka',
 	/** Kikuyu */
-	Ki = 'ki',
+	Ki: 'ki',
 	/** Kazakh */
-	Kk = 'kk',
+	Kk: 'kk',
 	/** Kalaallisut */
-	Kl = 'kl',
+	Kl: 'kl',
 	/** Khmer */
-	Km = 'km',
+	Km: 'km',
 	/** Kannada */
-	Kn = 'kn',
+	Kn: 'kn',
 	/** Korean */
-	Ko = 'ko',
+	Ko: 'ko',
 	/** Kashmiri */
-	Ks = 'ks',
+	Ks: 'ks',
 	/** Kurdish */
-	Ku = 'ku',
+	Ku: 'ku',
 	/** Cornish */
-	Kw = 'kw',
+	Kw: 'kw',
 	/** Kyrgyz */
-	Ky = 'ky',
+	Ky: 'ky',
 	/** Latin */
-	La = 'la',
+	La: 'la',
 	/** Luxembourgish */
-	Lb = 'lb',
+	Lb: 'lb',
 	/** Ganda */
-	Lg = 'lg',
+	Lg: 'lg',
 	/** Lingala */
-	Ln = 'ln',
+	Ln: 'ln',
 	/** Lao */
-	Lo = 'lo',
+	Lo: 'lo',
 	/** Lithuanian */
-	Lt = 'lt',
+	Lt: 'lt',
 	/** Luba-Katanga */
-	Lu = 'lu',
+	Lu: 'lu',
 	/** Latvian */
-	Lv = 'lv',
+	Lv: 'lv',
 	/** Malagasy */
-	Mg = 'mg',
+	Mg: 'mg',
 	/** Maori */
-	Mi = 'mi',
+	Mi: 'mi',
 	/** Macedonian */
-	Mk = 'mk',
+	Mk: 'mk',
 	/** Malayalam */
-	Ml = 'ml',
+	Ml: 'ml',
 	/** Mongolian */
-	Mn = 'mn',
+	Mn: 'mn',
 	/** Marathi */
-	Mr = 'mr',
+	Mr: 'mr',
 	/** Malay */
-	Ms = 'ms',
+	Ms: 'ms',
 	/** Maltese */
-	Mt = 'mt',
+	Mt: 'mt',
 	/** Burmese */
-	My = 'my',
+	My: 'my',
 	/** Norwegian Bokmål */
-	Nb = 'nb',
+	Nb: 'nb',
 	/** North Ndebele */
-	Nd = 'nd',
+	Nd: 'nd',
 	/** Nepali */
-	Ne = 'ne',
+	Ne: 'ne',
 	/** Dutch */
-	Nl = 'nl',
+	Nl: 'nl',
 	/** Flemish */
-	NlBe = 'nl_BE',
+	NlBe: 'nl_BE',
 	/** Norwegian Nynorsk */
-	Nn = 'nn',
+	Nn: 'nn',
 	/** Nyanja */
-	Ny = 'ny',
+	Ny: 'ny',
 	/** Oromo */
-	Om = 'om',
+	Om: 'om',
 	/** Odia */
-	Or = 'or',
+	Or: 'or',
 	/** Ossetic */
-	Os = 'os',
+	Os: 'os',
 	/** Punjabi */
-	Pa = 'pa',
+	Pa: 'pa',
 	/** Polish */
-	Pl = 'pl',
+	Pl: 'pl',
 	/** Pashto */
-	Ps = 'ps',
+	Ps: 'ps',
 	/** Portuguese */
-	Pt = 'pt',
+	Pt: 'pt',
 	/** Brazilian Portuguese */
-	PtBr = 'pt_BR',
+	PtBr: 'pt_BR',
 	/** European Portuguese */
-	PtPt = 'pt_PT',
+	PtPt: 'pt_PT',
 	/** Quechua */
-	Qu = 'qu',
+	Qu: 'qu',
 	/** Romansh */
-	Rm = 'rm',
+	Rm: 'rm',
 	/** Rundi */
-	Rn = 'rn',
+	Rn: 'rn',
 	/** Romanian */
-	Ro = 'ro',
+	Ro: 'ro',
 	/** Moldavian */
-	RoMd = 'ro_MD',
+	RoMd: 'ro_MD',
 	/** Russian */
-	Ru = 'ru',
+	Ru: 'ru',
 	/** Kinyarwanda */
-	Rw = 'rw',
+	Rw: 'rw',
 	/** Sanskrit */
-	Sa = 'sa',
+	Sa: 'sa',
 	/** Sindhi */
-	Sd = 'sd',
+	Sd: 'sd',
 	/** Northern Sami */
-	Se = 'se',
+	Se: 'se',
 	/** Sango */
-	Sg = 'sg',
+	Sg: 'sg',
 	/** Sinhala */
-	Si = 'si',
+	Si: 'si',
 	/** Slovak */
-	Sk = 'sk',
+	Sk: 'sk',
 	/** Slovenian */
-	Sl = 'sl',
+	Sl: 'sl',
 	/** Samoan */
-	Sm = 'sm',
+	Sm: 'sm',
 	/** Shona */
-	Sn = 'sn',
+	Sn: 'sn',
 	/** Somali */
-	So = 'so',
+	So: 'so',
 	/** Albanian */
-	Sq = 'sq',
+	Sq: 'sq',
 	/** Serbian */
-	Sr = 'sr',
+	Sr: 'sr',
 	/** Southern Sotho */
-	St = 'st',
+	St: 'st',
 	/** Sundanese */
-	Su = 'su',
+	Su: 'su',
 	/** Swedish */
-	Sv = 'sv',
+	Sv: 'sv',
 	/** Swahili */
-	Sw = 'sw',
+	Sw: 'sw',
 	/** Congo Swahili */
-	SwCd = 'sw_CD',
+	SwCd: 'sw_CD',
 	/** Tamil */
-	Ta = 'ta',
+	Ta: 'ta',
 	/** Telugu */
-	Te = 'te',
+	Te: 'te',
 	/** Tajik */
-	Tg = 'tg',
+	Tg: 'tg',
 	/** Thai */
-	Th = 'th',
+	Th: 'th',
 	/** Tigrinya */
-	Ti = 'ti',
+	Ti: 'ti',
 	/** Turkmen */
-	Tk = 'tk',
+	Tk: 'tk',
 	/** Tongan */
-	To = 'to',
+	To: 'to',
 	/** Turkish */
-	Tr = 'tr',
+	Tr: 'tr',
 	/** Tatar */
-	Tt = 'tt',
+	Tt: 'tt',
 	/** Uyghur */
-	Ug = 'ug',
+	Ug: 'ug',
 	/** Ukrainian */
-	Uk = 'uk',
+	Uk: 'uk',
 	/** Urdu */
-	Ur = 'ur',
+	Ur: 'ur',
 	/** Uzbek */
-	Uz = 'uz',
+	Uz: 'uz',
 	/** Vietnamese */
-	Vi = 'vi',
+	Vi: 'vi',
 	/** Volapük */
-	Vo = 'vo',
+	Vo: 'vo',
 	/** Wolof */
-	Wo = 'wo',
+	Wo: 'wo',
 	/** Xhosa */
-	Xh = 'xh',
+	Xh: 'xh',
 	/** Yiddish */
-	Yi = 'yi',
+	Yi: 'yi',
 	/** Yoruba */
-	Yo = 'yo',
+	Yo: 'yo',
 	/** Chinese */
-	Zh = 'zh',
+	Zh: 'zh',
 	/** Simplified Chinese */
-	ZhHans = 'zh_Hans',
+	ZhHans: 'zh_Hans',
 	/** Traditional Chinese */
-	ZhHant = 'zh_Hant',
+	ZhHant: 'zh_Hant',
 	/** Zulu */
-	Zu = 'zu',
-}
+	Zu: 'zu',
+} as const;
 
+export type LanguageCode = (typeof LanguageCode)[keyof typeof LanguageCode];
 export type LocaleStringCustomFieldConfig = CustomField & {
 	__typename?: 'LocaleStringCustomFieldConfig';
 	description?: Maybe<Array<LocalizedString>>;
@@ -1558,11 +1566,12 @@ export type LocalizedString = {
 	value: Scalars['String'];
 };
 
-export enum LogicalOperator {
-	And = 'AND',
-	Or = 'OR',
-}
+export const LogicalOperator = {
+	And: 'AND',
+	Or: 'OR',
+} as const;
 
+export type LogicalOperator = (typeof LogicalOperator)[keyof typeof LogicalOperator];
 /** Returned when attempting to register or verify a customer account without a password, when one is required. */
 export type MissingPasswordError = ErrorResult & {
 	__typename?: 'MissingPasswordError';
@@ -2257,179 +2266,180 @@ export type PaymentMethodQuote = {
  *
  * @docsCategory common
  */
-export enum Permission {
+export const Permission = {
 	/** Authenticated means simply that the user is logged in */
-	Authenticated = 'Authenticated',
+	Authenticated: 'Authenticated',
 	/** Grants permission to create Administrator */
-	CreateAdministrator = 'CreateAdministrator',
+	CreateAdministrator: 'CreateAdministrator',
 	/** Grants permission to create Asset */
-	CreateAsset = 'CreateAsset',
+	CreateAsset: 'CreateAsset',
 	/** Grants permission to create Products, Facets, Assets, Collections */
-	CreateCatalog = 'CreateCatalog',
+	CreateCatalog: 'CreateCatalog',
 	/** Grants permission to create Channel */
-	CreateChannel = 'CreateChannel',
+	CreateChannel: 'CreateChannel',
 	/** Grants permission to create Collection */
-	CreateCollection = 'CreateCollection',
+	CreateCollection: 'CreateCollection',
 	/** Grants permission to create Country */
-	CreateCountry = 'CreateCountry',
+	CreateCountry: 'CreateCountry',
 	/** Grants permission to create Customer */
-	CreateCustomer = 'CreateCustomer',
+	CreateCustomer: 'CreateCustomer',
 	/** Grants permission to create CustomerGroup */
-	CreateCustomerGroup = 'CreateCustomerGroup',
+	CreateCustomerGroup: 'CreateCustomerGroup',
 	/** Grants permission to create Facet */
-	CreateFacet = 'CreateFacet',
+	CreateFacet: 'CreateFacet',
 	/** Grants permission to create Order */
-	CreateOrder = 'CreateOrder',
+	CreateOrder: 'CreateOrder',
 	/** Grants permission to create PaymentMethod */
-	CreatePaymentMethod = 'CreatePaymentMethod',
+	CreatePaymentMethod: 'CreatePaymentMethod',
 	/** Grants permission to create Product */
-	CreateProduct = 'CreateProduct',
+	CreateProduct: 'CreateProduct',
 	/** Grants permission to create Promotion */
-	CreatePromotion = 'CreatePromotion',
+	CreatePromotion: 'CreatePromotion',
 	/** Grants permission to create PaymentMethods, ShippingMethods, TaxCategories, TaxRates, Zones, Countries, System & GlobalSettings */
-	CreateSettings = 'CreateSettings',
+	CreateSettings: 'CreateSettings',
 	/** Grants permission to create ShippingMethod */
-	CreateShippingMethod = 'CreateShippingMethod',
+	CreateShippingMethod: 'CreateShippingMethod',
 	/** Grants permission to create System */
-	CreateSystem = 'CreateSystem',
+	CreateSystem: 'CreateSystem',
 	/** Grants permission to create Tag */
-	CreateTag = 'CreateTag',
+	CreateTag: 'CreateTag',
 	/** Grants permission to create TaxCategory */
-	CreateTaxCategory = 'CreateTaxCategory',
+	CreateTaxCategory: 'CreateTaxCategory',
 	/** Grants permission to create TaxRate */
-	CreateTaxRate = 'CreateTaxRate',
+	CreateTaxRate: 'CreateTaxRate',
 	/** Grants permission to create Zone */
-	CreateZone = 'CreateZone',
+	CreateZone: 'CreateZone',
 	/** Grants permission to delete Administrator */
-	DeleteAdministrator = 'DeleteAdministrator',
+	DeleteAdministrator: 'DeleteAdministrator',
 	/** Grants permission to delete Asset */
-	DeleteAsset = 'DeleteAsset',
+	DeleteAsset: 'DeleteAsset',
 	/** Grants permission to delete Products, Facets, Assets, Collections */
-	DeleteCatalog = 'DeleteCatalog',
+	DeleteCatalog: 'DeleteCatalog',
 	/** Grants permission to delete Channel */
-	DeleteChannel = 'DeleteChannel',
+	DeleteChannel: 'DeleteChannel',
 	/** Grants permission to delete Collection */
-	DeleteCollection = 'DeleteCollection',
+	DeleteCollection: 'DeleteCollection',
 	/** Grants permission to delete Country */
-	DeleteCountry = 'DeleteCountry',
+	DeleteCountry: 'DeleteCountry',
 	/** Grants permission to delete Customer */
-	DeleteCustomer = 'DeleteCustomer',
+	DeleteCustomer: 'DeleteCustomer',
 	/** Grants permission to delete CustomerGroup */
-	DeleteCustomerGroup = 'DeleteCustomerGroup',
+	DeleteCustomerGroup: 'DeleteCustomerGroup',
 	/** Grants permission to delete Facet */
-	DeleteFacet = 'DeleteFacet',
+	DeleteFacet: 'DeleteFacet',
 	/** Grants permission to delete Order */
-	DeleteOrder = 'DeleteOrder',
+	DeleteOrder: 'DeleteOrder',
 	/** Grants permission to delete PaymentMethod */
-	DeletePaymentMethod = 'DeletePaymentMethod',
+	DeletePaymentMethod: 'DeletePaymentMethod',
 	/** Grants permission to delete Product */
-	DeleteProduct = 'DeleteProduct',
+	DeleteProduct: 'DeleteProduct',
 	/** Grants permission to delete Promotion */
-	DeletePromotion = 'DeletePromotion',
+	DeletePromotion: 'DeletePromotion',
 	/** Grants permission to delete PaymentMethods, ShippingMethods, TaxCategories, TaxRates, Zones, Countries, System & GlobalSettings */
-	DeleteSettings = 'DeleteSettings',
+	DeleteSettings: 'DeleteSettings',
 	/** Grants permission to delete ShippingMethod */
-	DeleteShippingMethod = 'DeleteShippingMethod',
+	DeleteShippingMethod: 'DeleteShippingMethod',
 	/** Grants permission to delete System */
-	DeleteSystem = 'DeleteSystem',
+	DeleteSystem: 'DeleteSystem',
 	/** Grants permission to delete Tag */
-	DeleteTag = 'DeleteTag',
+	DeleteTag: 'DeleteTag',
 	/** Grants permission to delete TaxCategory */
-	DeleteTaxCategory = 'DeleteTaxCategory',
+	DeleteTaxCategory: 'DeleteTaxCategory',
 	/** Grants permission to delete TaxRate */
-	DeleteTaxRate = 'DeleteTaxRate',
+	DeleteTaxRate: 'DeleteTaxRate',
 	/** Grants permission to delete Zone */
-	DeleteZone = 'DeleteZone',
+	DeleteZone: 'DeleteZone',
 	/** Owner means the user owns this entity, e.g. a Customer's own Order */
-	Owner = 'Owner',
+	Owner: 'Owner',
 	/** Public means any unauthenticated user may perform the operation */
-	Public = 'Public',
+	Public: 'Public',
 	/** Grants permission to read Administrator */
-	ReadAdministrator = 'ReadAdministrator',
+	ReadAdministrator: 'ReadAdministrator',
 	/** Grants permission to read Asset */
-	ReadAsset = 'ReadAsset',
+	ReadAsset: 'ReadAsset',
 	/** Grants permission to read Products, Facets, Assets, Collections */
-	ReadCatalog = 'ReadCatalog',
+	ReadCatalog: 'ReadCatalog',
 	/** Grants permission to read Channel */
-	ReadChannel = 'ReadChannel',
+	ReadChannel: 'ReadChannel',
 	/** Grants permission to read Collection */
-	ReadCollection = 'ReadCollection',
+	ReadCollection: 'ReadCollection',
 	/** Grants permission to read Country */
-	ReadCountry = 'ReadCountry',
+	ReadCountry: 'ReadCountry',
 	/** Grants permission to read Customer */
-	ReadCustomer = 'ReadCustomer',
+	ReadCustomer: 'ReadCustomer',
 	/** Grants permission to read CustomerGroup */
-	ReadCustomerGroup = 'ReadCustomerGroup',
+	ReadCustomerGroup: 'ReadCustomerGroup',
 	/** Grants permission to read Facet */
-	ReadFacet = 'ReadFacet',
+	ReadFacet: 'ReadFacet',
 	/** Grants permission to read Order */
-	ReadOrder = 'ReadOrder',
+	ReadOrder: 'ReadOrder',
 	/** Grants permission to read PaymentMethod */
-	ReadPaymentMethod = 'ReadPaymentMethod',
+	ReadPaymentMethod: 'ReadPaymentMethod',
 	/** Grants permission to read Product */
-	ReadProduct = 'ReadProduct',
+	ReadProduct: 'ReadProduct',
 	/** Grants permission to read Promotion */
-	ReadPromotion = 'ReadPromotion',
+	ReadPromotion: 'ReadPromotion',
 	/** Grants permission to read PaymentMethods, ShippingMethods, TaxCategories, TaxRates, Zones, Countries, System & GlobalSettings */
-	ReadSettings = 'ReadSettings',
+	ReadSettings: 'ReadSettings',
 	/** Grants permission to read ShippingMethod */
-	ReadShippingMethod = 'ReadShippingMethod',
+	ReadShippingMethod: 'ReadShippingMethod',
 	/** Grants permission to read System */
-	ReadSystem = 'ReadSystem',
+	ReadSystem: 'ReadSystem',
 	/** Grants permission to read Tag */
-	ReadTag = 'ReadTag',
+	ReadTag: 'ReadTag',
 	/** Grants permission to read TaxCategory */
-	ReadTaxCategory = 'ReadTaxCategory',
+	ReadTaxCategory: 'ReadTaxCategory',
 	/** Grants permission to read TaxRate */
-	ReadTaxRate = 'ReadTaxRate',
+	ReadTaxRate: 'ReadTaxRate',
 	/** Grants permission to read Zone */
-	ReadZone = 'ReadZone',
+	ReadZone: 'ReadZone',
 	/** SuperAdmin has unrestricted access to all operations */
-	SuperAdmin = 'SuperAdmin',
+	SuperAdmin: 'SuperAdmin',
 	/** Grants permission to update Administrator */
-	UpdateAdministrator = 'UpdateAdministrator',
+	UpdateAdministrator: 'UpdateAdministrator',
 	/** Grants permission to update Asset */
-	UpdateAsset = 'UpdateAsset',
+	UpdateAsset: 'UpdateAsset',
 	/** Grants permission to update Products, Facets, Assets, Collections */
-	UpdateCatalog = 'UpdateCatalog',
+	UpdateCatalog: 'UpdateCatalog',
 	/** Grants permission to update Channel */
-	UpdateChannel = 'UpdateChannel',
+	UpdateChannel: 'UpdateChannel',
 	/** Grants permission to update Collection */
-	UpdateCollection = 'UpdateCollection',
+	UpdateCollection: 'UpdateCollection',
 	/** Grants permission to update Country */
-	UpdateCountry = 'UpdateCountry',
+	UpdateCountry: 'UpdateCountry',
 	/** Grants permission to update Customer */
-	UpdateCustomer = 'UpdateCustomer',
+	UpdateCustomer: 'UpdateCustomer',
 	/** Grants permission to update CustomerGroup */
-	UpdateCustomerGroup = 'UpdateCustomerGroup',
+	UpdateCustomerGroup: 'UpdateCustomerGroup',
 	/** Grants permission to update Facet */
-	UpdateFacet = 'UpdateFacet',
+	UpdateFacet: 'UpdateFacet',
 	/** Grants permission to update GlobalSettings */
-	UpdateGlobalSettings = 'UpdateGlobalSettings',
+	UpdateGlobalSettings: 'UpdateGlobalSettings',
 	/** Grants permission to update Order */
-	UpdateOrder = 'UpdateOrder',
+	UpdateOrder: 'UpdateOrder',
 	/** Grants permission to update PaymentMethod */
-	UpdatePaymentMethod = 'UpdatePaymentMethod',
+	UpdatePaymentMethod: 'UpdatePaymentMethod',
 	/** Grants permission to update Product */
-	UpdateProduct = 'UpdateProduct',
+	UpdateProduct: 'UpdateProduct',
 	/** Grants permission to update Promotion */
-	UpdatePromotion = 'UpdatePromotion',
+	UpdatePromotion: 'UpdatePromotion',
 	/** Grants permission to update PaymentMethods, ShippingMethods, TaxCategories, TaxRates, Zones, Countries, System & GlobalSettings */
-	UpdateSettings = 'UpdateSettings',
+	UpdateSettings: 'UpdateSettings',
 	/** Grants permission to update ShippingMethod */
-	UpdateShippingMethod = 'UpdateShippingMethod',
+	UpdateShippingMethod: 'UpdateShippingMethod',
 	/** Grants permission to update System */
-	UpdateSystem = 'UpdateSystem',
+	UpdateSystem: 'UpdateSystem',
 	/** Grants permission to update Tag */
-	UpdateTag = 'UpdateTag',
+	UpdateTag: 'UpdateTag',
 	/** Grants permission to update TaxCategory */
-	UpdateTaxCategory = 'UpdateTaxCategory',
+	UpdateTaxCategory: 'UpdateTaxCategory',
 	/** Grants permission to update TaxRate */
-	UpdateTaxRate = 'UpdateTaxRate',
+	UpdateTaxRate: 'UpdateTaxRate',
 	/** Grants permission to update Zone */
-	UpdateZone = 'UpdateZone',
-}
+	UpdateZone: 'UpdateZone',
+} as const;
 
+export type Permission = (typeof Permission)[keyof typeof Permission];
 /** The price range where the result has more than one price */
 export type PriceRange = {
 	__typename?: 'PriceRange';
@@ -2968,11 +2978,12 @@ export type SinglePrice = {
 	value: Scalars['Int'];
 };
 
-export enum SortOrder {
-	Asc = 'ASC',
-	Desc = 'DESC',
-}
+export const SortOrder = {
+	Asc: 'ASC',
+	Desc: 'DESC',
+} as const;
 
+export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
 export type StringCustomFieldConfig = CustomField & {
 	__typename?: 'StringCustomFieldConfig';
 	description?: Maybe<Array<LocalizedString>>;
@@ -3210,6 +3221,276 @@ export type LoginMutation = {
 		| { __typename: 'NotVerifiedError'; errorCode: ErrorCode; message: string };
 };
 
+export type LogoutMutationVariables = Exact<{ [key: string]: never }>;
+
+export type LogoutMutation = {
+	__typename?: 'Mutation';
+	logout: { __typename?: 'Success'; success: boolean };
+};
+
+export type RegisterCustomerAccountMutationVariables = Exact<{
+	input: RegisterCustomerInput;
+}>;
+
+export type RegisterCustomerAccountMutation = {
+	__typename?: 'Mutation';
+	registerCustomerAccount:
+		| { __typename: 'MissingPasswordError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'NativeAuthStrategyError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'PasswordValidationError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'Success'; success: boolean };
+};
+
+export type VerifyCustomerAccountMutationVariables = Exact<{
+	token: Scalars['String'];
+	password?: InputMaybe<Scalars['String']>;
+}>;
+
+export type VerifyCustomerAccountMutation = {
+	__typename?: 'Mutation';
+	verifyCustomerAccount:
+		| { __typename: 'CurrentUser'; id: string; identifier: string }
+		| { __typename: 'MissingPasswordError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'NativeAuthStrategyError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'PasswordAlreadySetError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'PasswordValidationError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'VerificationTokenExpiredError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'VerificationTokenInvalidError'; errorCode: ErrorCode; message: string };
+};
+
+export type UpdateCustomerMutationVariables = Exact<{
+	input: UpdateCustomerInput;
+}>;
+
+export type UpdateCustomerMutation = {
+	__typename?: 'Mutation';
+	updateCustomer: { __typename: 'Customer' };
+};
+
+export type RequestUpdateCustomerEmailAddressMutationVariables = Exact<{
+	password: Scalars['String'];
+	newEmailAddress: Scalars['String'];
+}>;
+
+export type RequestUpdateCustomerEmailAddressMutation = {
+	__typename?: 'Mutation';
+	requestUpdateCustomerEmailAddress:
+		| { __typename: 'EmailAddressConflictError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'InvalidCredentialsError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'NativeAuthStrategyError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'Success' };
+};
+
+export type UpdateCustomerEmailAddressMutationVariables = Exact<{
+	token: Scalars['String'];
+}>;
+
+export type UpdateCustomerEmailAddressMutation = {
+	__typename?: 'Mutation';
+	updateCustomerEmailAddress:
+		| { __typename: 'IdentifierChangeTokenExpiredError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'IdentifierChangeTokenInvalidError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'NativeAuthStrategyError'; errorCode: ErrorCode; message: string }
+		| { __typename: 'Success' };
+};
+
+export type DetailedProductFragment = {
+	__typename?: 'Product';
+	id: string;
+	name: string;
+	description: string;
+	collections: Array<{
+		__typename?: 'Collection';
+		id: string;
+		slug: string;
+		name: string;
+		breadcrumbs: Array<{
+			__typename?: 'CollectionBreadcrumb';
+			id: string;
+			name: string;
+			slug: string;
+		}>;
+	}>;
+	facetValues: Array<{
+		__typename?: 'FacetValue';
+		id: string;
+		code: string;
+		name: string;
+		facet: { __typename?: 'Facet'; id: string; code: string; name: string };
+	}>;
+	featuredAsset?: { __typename?: 'Asset'; id: string; preview: string } | null;
+	assets: Array<{ __typename?: 'Asset'; id: string; preview: string }>;
+	variants: Array<{
+		__typename?: 'ProductVariant';
+		id: string;
+		name: string;
+		priceWithTax: number;
+		currencyCode: CurrencyCode;
+		sku: string;
+		stockLevel: string;
+		featuredAsset?: { __typename?: 'Asset'; id: string; preview: string } | null;
+	}>;
+};
+
+export type ProductQueryVariables = Exact<{
+	slug?: InputMaybe<Scalars['String']>;
+	id?: InputMaybe<Scalars['ID']>;
+}>;
+
+export type ProductQuery = {
+	__typename?: 'Query';
+	product?: {
+		__typename?: 'Product';
+		id: string;
+		name: string;
+		description: string;
+		collections: Array<{
+			__typename?: 'Collection';
+			id: string;
+			slug: string;
+			name: string;
+			breadcrumbs: Array<{
+				__typename?: 'CollectionBreadcrumb';
+				id: string;
+				name: string;
+				slug: string;
+			}>;
+		}>;
+		facetValues: Array<{
+			__typename?: 'FacetValue';
+			id: string;
+			code: string;
+			name: string;
+			facet: { __typename?: 'Facet'; id: string; code: string; name: string };
+		}>;
+		featuredAsset?: { __typename?: 'Asset'; id: string; preview: string } | null;
+		assets: Array<{ __typename?: 'Asset'; id: string; preview: string }>;
+		variants: Array<{
+			__typename?: 'ProductVariant';
+			id: string;
+			name: string;
+			priceWithTax: number;
+			currencyCode: CurrencyCode;
+			sku: string;
+			stockLevel: string;
+			featuredAsset?: { __typename?: 'Asset'; id: string; preview: string } | null;
+		}>;
+	} | null;
+};
+
+export type ListedProductFragment = {
+	__typename?: 'SearchResult';
+	productId: string;
+	productName: string;
+	slug: string;
+	currencyCode: CurrencyCode;
+	productAsset?: { __typename?: 'SearchResultAsset'; id: string; preview: string } | null;
+	priceWithTax:
+		| { __typename?: 'PriceRange'; min: number; max: number }
+		| { __typename?: 'SinglePrice'; value: number };
+};
+
+export type SearchQueryVariables = Exact<{
+	input: SearchInput;
+}>;
+
+export type SearchQuery = {
+	__typename?: 'Query';
+	search: {
+		__typename?: 'SearchResponse';
+		totalItems: number;
+		items: Array<{
+			__typename?: 'SearchResult';
+			productId: string;
+			productName: string;
+			slug: string;
+			currencyCode: CurrencyCode;
+			productAsset?: { __typename?: 'SearchResultAsset'; id: string; preview: string } | null;
+			priceWithTax:
+				| { __typename?: 'PriceRange'; min: number; max: number }
+				| { __typename?: 'SinglePrice'; value: number };
+		}>;
+		facetValues: Array<{
+			__typename?: 'FacetValueResult';
+			count: number;
+			facetValue: {
+				__typename?: 'FacetValue';
+				id: string;
+				name: string;
+				facet: { __typename?: 'Facet'; id: string; name: string };
+			};
+		}>;
+	};
+};
+
+export const DetailedProductFragmentDoc = gql`
+	fragment DetailedProduct on Product {
+		id
+		name
+		description
+		collections {
+			id
+			slug
+			name
+			breadcrumbs {
+				id
+				name
+				slug
+			}
+		}
+		facetValues {
+			facet {
+				id
+				code
+				name
+			}
+			id
+			code
+			name
+		}
+		featuredAsset {
+			id
+			preview
+		}
+		assets {
+			id
+			preview
+		}
+		variants {
+			id
+			name
+			priceWithTax
+			currencyCode
+			sku
+			stockLevel
+			featuredAsset {
+				id
+				preview
+			}
+		}
+	}
+`;
+export const ListedProductFragmentDoc = gql`
+	fragment ListedProduct on SearchResult {
+		productId
+		productName
+		slug
+		productAsset {
+			id
+			preview
+		}
+		currencyCode
+		priceWithTax {
+			... on PriceRange {
+				min
+				max
+			}
+			... on SinglePrice {
+				value
+			}
+		}
+	}
+`;
 export const LoginDocument = gql`
 	mutation login($email: String!, $password: String!, $rememberMe: Boolean) {
 		login(username: $email, password: $password, rememberMe: $rememberMe) {
@@ -3225,6 +3506,101 @@ export const LoginDocument = gql`
 		}
 	}
 `;
+export const LogoutDocument = gql`
+	mutation logout {
+		logout {
+			success
+		}
+	}
+`;
+export const RegisterCustomerAccountDocument = gql`
+	mutation registerCustomerAccount($input: RegisterCustomerInput!) {
+		registerCustomerAccount(input: $input) {
+			__typename
+			... on Success {
+				success
+			}
+			... on ErrorResult {
+				errorCode
+				message
+			}
+		}
+	}
+`;
+export const VerifyCustomerAccountDocument = gql`
+	mutation verifyCustomerAccount($token: String!, $password: String) {
+		verifyCustomerAccount(token: $token, password: $password) {
+			__typename
+			... on CurrentUser {
+				id
+				identifier
+			}
+			... on ErrorResult {
+				errorCode
+				message
+			}
+		}
+	}
+`;
+export const UpdateCustomerDocument = gql`
+	mutation updateCustomer($input: UpdateCustomerInput!) {
+		updateCustomer(input: $input) {
+			__typename
+		}
+	}
+`;
+export const RequestUpdateCustomerEmailAddressDocument = gql`
+	mutation requestUpdateCustomerEmailAddress($password: String!, $newEmailAddress: String!) {
+		requestUpdateCustomerEmailAddress(password: $password, newEmailAddress: $newEmailAddress) {
+			__typename
+			... on ErrorResult {
+				errorCode
+				message
+			}
+		}
+	}
+`;
+export const UpdateCustomerEmailAddressDocument = gql`
+	mutation updateCustomerEmailAddress($token: String!) {
+		updateCustomerEmailAddress(token: $token) {
+			__typename
+			... on ErrorResult {
+				errorCode
+				message
+			}
+		}
+	}
+`;
+export const ProductDocument = gql`
+	query product($slug: String, $id: ID) {
+		product(slug: $slug, id: $id) {
+			...DetailedProduct
+		}
+	}
+	${DetailedProductFragmentDoc}
+`;
+export const SearchDocument = gql`
+	query search($input: SearchInput!) {
+		search(input: $input) {
+			totalItems
+			items {
+				...ListedProduct
+			}
+			facetValues {
+				count
+				facetValue {
+					id
+					name
+					facet {
+						id
+						name
+					}
+				}
+			}
+		}
+	}
+	${ListedProductFragmentDoc}
+`;
 export type Requester<C = {}, E = unknown> = <R, V>(
 	doc: DocumentNode,
 	vars?: V,
@@ -3238,6 +3614,83 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
 				variables,
 				options
 			) as Promise<LoginMutation>;
+		},
+		logout(variables?: LogoutMutationVariables, options?: C): Promise<LogoutMutation> {
+			return requester<LogoutMutation, LogoutMutationVariables>(
+				LogoutDocument,
+				variables,
+				options
+			) as Promise<LogoutMutation>;
+		},
+		registerCustomerAccount(
+			variables: RegisterCustomerAccountMutationVariables,
+			options?: C
+		): Promise<RegisterCustomerAccountMutation> {
+			return requester<RegisterCustomerAccountMutation, RegisterCustomerAccountMutationVariables>(
+				RegisterCustomerAccountDocument,
+				variables,
+				options
+			) as Promise<RegisterCustomerAccountMutation>;
+		},
+		verifyCustomerAccount(
+			variables: VerifyCustomerAccountMutationVariables,
+			options?: C
+		): Promise<VerifyCustomerAccountMutation> {
+			return requester<VerifyCustomerAccountMutation, VerifyCustomerAccountMutationVariables>(
+				VerifyCustomerAccountDocument,
+				variables,
+				options
+			) as Promise<VerifyCustomerAccountMutation>;
+		},
+		updateCustomer(
+			variables: UpdateCustomerMutationVariables,
+			options?: C
+		): Promise<UpdateCustomerMutation> {
+			return requester<UpdateCustomerMutation, UpdateCustomerMutationVariables>(
+				UpdateCustomerDocument,
+				variables,
+				options
+			) as Promise<UpdateCustomerMutation>;
+		},
+		requestUpdateCustomerEmailAddress(
+			variables: RequestUpdateCustomerEmailAddressMutationVariables,
+			options?: C
+		): Promise<RequestUpdateCustomerEmailAddressMutation> {
+			return requester<
+				RequestUpdateCustomerEmailAddressMutation,
+				RequestUpdateCustomerEmailAddressMutationVariables
+			>(
+				RequestUpdateCustomerEmailAddressDocument,
+				variables,
+				options
+			) as Promise<RequestUpdateCustomerEmailAddressMutation>;
+		},
+		updateCustomerEmailAddress(
+			variables: UpdateCustomerEmailAddressMutationVariables,
+			options?: C
+		): Promise<UpdateCustomerEmailAddressMutation> {
+			return requester<
+				UpdateCustomerEmailAddressMutation,
+				UpdateCustomerEmailAddressMutationVariables
+			>(
+				UpdateCustomerEmailAddressDocument,
+				variables,
+				options
+			) as Promise<UpdateCustomerEmailAddressMutation>;
+		},
+		product(variables?: ProductQueryVariables, options?: C): Promise<ProductQuery> {
+			return requester<ProductQuery, ProductQueryVariables>(
+				ProductDocument,
+				variables,
+				options
+			) as Promise<ProductQuery>;
+		},
+		search(variables: SearchQueryVariables, options?: C): Promise<SearchQuery> {
+			return requester<SearchQuery, SearchQueryVariables>(
+				SearchDocument,
+				variables,
+				options
+			) as Promise<SearchQuery>;
 		},
 	};
 }

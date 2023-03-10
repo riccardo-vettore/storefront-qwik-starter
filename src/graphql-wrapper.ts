@@ -1,9 +1,9 @@
 import { getSdk } from '~/generated/graphql';
-import { requester } from '~/utils/api';
+import { requester } from '~/utils/api-test';
 
-const baseSdk = getSdk<QueryOptions>(requester);
+export const sdk = getSdk(requester);
 
-export interface QueryOptions {
+/*export interface QueryOptions {
 	request: Request;
 }
 
@@ -12,8 +12,4 @@ type SdkWithHeaders = {
 	[k in keyof Sdk]: (
 		...args: Parameters<Sdk[k]>
 	) => Promise<Awaited<ReturnType<Sdk[k]>> & { _headers: Headers }>;
-};
-
-export const sdk: SdkWithHeaders = baseSdk as any;
-
-export type WithHeaders<T> = T & { _headers: Headers };
+};*/

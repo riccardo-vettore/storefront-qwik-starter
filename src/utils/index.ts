@@ -1,6 +1,7 @@
 import { isBrowser } from '@builder.io/qwik/build';
 import { ENV_VARIABLES } from '~/env';
-import { ActiveCustomer, FacetWithValues, Search, ShippingAddress } from '~/types';
+import { ActiveCustomer, FacetWithValues, ShippingAddress } from '~/types';
+import { SearchResponse } from '~/generated/graphql';
 
 export const getRandomInt = (max: number) => Math.floor(Math.random() * max);
 export function formatPrice(value: number, currency: any) {
@@ -11,7 +12,7 @@ export function formatPrice(value: number, currency: any) {
 }
 
 export const groupFacetValues = (
-	search: Search,
+	search: SearchResponse,
 	activeFacetValueIds: string[]
 ): FacetWithValues[] => {
 	if (!search) {

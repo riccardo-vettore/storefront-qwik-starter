@@ -1,6 +1,6 @@
 import { $, component$, useSignal } from '@builder.io/qwik';
 import XCircleIcon from '~/components/icons/XCircleIcon';
-import { login as loginApi } from '~/providers/account/account';
+import { login as loginGql } from '~/providers/account/account';
 
 export default component$(() => {
 	const email = useSignal('');
@@ -9,7 +9,7 @@ export default component$(() => {
 	const error = useSignal('');
 
 	const login = $(async () => {
-		const result = await loginApi(email.value, password.value, rememberMe.value);
+		const result = await loginGql(email.value, password.value, rememberMe.value);
 		if (result.__typename === 'CurrentUser') {
 			window.location.href = '/account';
 		} else {

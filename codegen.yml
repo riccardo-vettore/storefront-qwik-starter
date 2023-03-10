@@ -14,6 +14,8 @@ documents:
   - '!src/generated/*'
 generates:
   src/generated/graphql.ts:
+    config:
+      enumsAsConst: true
     plugins:
       - typescript
       - typescript-operations

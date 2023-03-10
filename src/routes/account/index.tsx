@@ -1,7 +1,6 @@
 import { $, component$, useBrowserVisibleTask$ } from '@builder.io/qwik';
-import { logoutMutation } from '~/graphql/mutations';
 import { scrollToTop } from '~/utils';
-import { execute } from '~/utils/api';
+import { logout as logoutGql } from '~/providers/account/account';
 
 export default component$(() => {
 	useBrowserVisibleTask$(() => {
@@ -9,7 +8,7 @@ export default component$(() => {
 	});
 
 	const logout = $(async () => {
-		await execute(logoutMutation());
+		await logoutGql();
 		window.location.href = '/';
 	});
 	return (
