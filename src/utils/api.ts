@@ -9,23 +9,45 @@ type ResponseProps<T> = { token: string; data: T };
 type ExecuteProps = { query: string; variables: Record<string, any> };
 type Options = { method: string; headers: Record<string, string>; body: string };
 
-export interface GraphqlResponse<Response> {
-	errors: any[];
-	data: Response;
-}
-
 export const requester = async <R, V>(
 	doc: DocumentNode,
-	vars?: V
-	/*	options?: { headers?: Headers; request?: Request }*/
+	vars?: V,
+	options?: { headers?: Headers; request?: Request }
 ): Promise<R> => {
-	return execute<R, V>({ query: print(doc), variables: vars });
+	return execute2<R, V>({ query: print(doc), variables: vars, ...options });
 	/*.then( async (response) => {
-			return { ...response.data }
-		})*/
+      return { ...response.data }
+    })*/
 };
 
-export const execute = async <R, V>(body: { query: string; variables?: V }): Promise<R> => {
+export const execute = async <T>(body: ExecuteProps): Promise<T> => {
+	const options = { method: 'POST', headers: createHeaders(), body: JSON.stringify(body) };
+
+	const response: ResponseProps<T> = isBrowser
+		? await executeOnTheServer(options)
+		: await executeRequest(options);
+
+	if (isBrowser && response.token) {
+		setCookie(AUTH_TOKEN, response.token, 365);
+	}
+	return response.data;
+};
+
+export const execute2 = async <R, V>(body: { query: string; variables?: V }): Promise<R> => {
+	const options = { method: 'POST', headers: createHeaders(), body: JSON.stringify(body) };
+
+	const response: ResponseProps<R> = isBrowser
+		? await executeOnTheServer(options)
+		: await executeRequest(options);
+
+	if (isBrowser && response.token) {
+		setCookie(AUTH_TOKEN, response.token, 365);
+	}
+
+	return response.data;
+};
+
+export const execute3 = async <R, V>(body: { query: string; variables?: V }): Promise<R> => {
 	const options = { method: 'POST', headers: createHeaders(), body: JSON.stringify(body) };
 
 	const response: ResponseProps<R> = isBrowser

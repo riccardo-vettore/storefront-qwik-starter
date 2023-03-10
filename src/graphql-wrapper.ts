@@ -1,7 +1,7 @@
 import { getSdk } from '~/generated/graphql';
 import { requester } from '~/utils/api';
 
-const baseSdk = getSdk<QueryOptions, unknown>(requester);
+const baseSdk = getSdk<QueryOptions>(requester);
 
 export interface QueryOptions {
 	request: Request;
