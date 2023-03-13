@@ -3294,6 +3294,442 @@ export type UpdateCustomerEmailAddressMutation = {
 		| { __typename: 'Success' };
 };
 
+export type AvailableCountriesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type AvailableCountriesQuery = {
+	__typename?: 'Query';
+	availableCountries: Array<{ __typename?: 'Country'; id: string; name: string; code: string }>;
+};
+
+export type TransitionOrderToStateMutationVariables = Exact<{
+	state: Scalars['String'];
+}>;
+
+export type TransitionOrderToStateMutation = {
+	__typename?: 'Mutation';
+	transitionOrderToState?:
+		| {
+				__typename: 'Order';
+				id: string;
+				code: string;
+				active: boolean;
+				createdAt: any;
+				state: string;
+				currencyCode: CurrencyCode;
+				totalQuantity: number;
+				subTotal: number;
+				subTotalWithTax: number;
+				shippingWithTax: number;
+				totalWithTax: number;
+				taxSummary: Array<{
+					__typename?: 'OrderTaxSummary';
+					description: string;
+					taxRate: number;
+					taxTotal: number;
+				}>;
+				customer?: {
+					__typename?: 'Customer';
+					id: string;
+					firstName: string;
+					lastName: string;
+					emailAddress: string;
+				} | null;
+				shippingAddress?: {
+					__typename?: 'OrderAddress';
+					fullName?: string | null;
+					streetLine1?: string | null;
+					streetLine2?: string | null;
+					company?: string | null;
+					city?: string | null;
+					province?: string | null;
+					postalCode?: string | null;
+					countryCode?: string | null;
+					phoneNumber?: string | null;
+				} | null;
+				shippingLines: Array<{
+					__typename?: 'ShippingLine';
+					priceWithTax: number;
+					shippingMethod: { __typename?: 'ShippingMethod'; id: string; name: string };
+				}>;
+				lines: Array<{
+					__typename?: 'OrderLine';
+					id: string;
+					unitPriceWithTax: number;
+					linePriceWithTax: number;
+					quantity: number;
+					featuredAsset?: { __typename?: 'Asset'; id: string; preview: string } | null;
+					productVariant: {
+						__typename?: 'ProductVariant';
+						id: string;
+						name: string;
+						price: number;
+						product: { __typename?: 'Product'; id: string; slug: string };
+					};
+				}>;
+				payments?: Array<{
+					__typename?: 'Payment';
+					id: string;
+					state: string;
+					method: string;
+					amount: number;
+					metadata?: any | null;
+				}> | null;
+		  }
+		| { __typename?: 'OrderStateTransitionError'; errorCode: ErrorCode; message: string }
+		| null;
+};
+
+export type AddPaymentToOrderMutationVariables = Exact<{
+	input: PaymentInput;
+}>;
+
+export type AddPaymentToOrderMutation = {
+	__typename?: 'Mutation';
+	addPaymentToOrder:
+		| { __typename?: 'IneligiblePaymentMethodError'; errorCode: ErrorCode; message: string }
+		| { __typename?: 'NoActiveOrderError'; errorCode: ErrorCode; message: string }
+		| {
+				__typename: 'Order';
+				id: string;
+				code: string;
+				active: boolean;
+				createdAt: any;
+				state: string;
+				currencyCode: CurrencyCode;
+				totalQuantity: number;
+				subTotal: number;
+				subTotalWithTax: number;
+				shippingWithTax: number;
+				totalWithTax: number;
+				taxSummary: Array<{
+					__typename?: 'OrderTaxSummary';
+					description: string;
+					taxRate: number;
+					taxTotal: number;
+				}>;
+				customer?: {
+					__typename?: 'Customer';
+					id: string;
+					firstName: string;
+					lastName: string;
+					emailAddress: string;
+				} | null;
+				shippingAddress?: {
+					__typename?: 'OrderAddress';
+					fullName?: string | null;
+					streetLine1?: string | null;
+					streetLine2?: string | null;
+					company?: string | null;
+					city?: string | null;
+					province?: string | null;
+					postalCode?: string | null;
+					countryCode?: string | null;
+					phoneNumber?: string | null;
+				} | null;
+				shippingLines: Array<{
+					__typename?: 'ShippingLine';
+					priceWithTax: number;
+					shippingMethod: { __typename?: 'ShippingMethod'; id: string; name: string };
+				}>;
+				lines: Array<{
+					__typename?: 'OrderLine';
+					id: string;
+					unitPriceWithTax: number;
+					linePriceWithTax: number;
+					quantity: number;
+					featuredAsset?: { __typename?: 'Asset'; id: string; preview: string } | null;
+					productVariant: {
+						__typename?: 'ProductVariant';
+						id: string;
+						name: string;
+						price: number;
+						product: { __typename?: 'Product'; id: string; slug: string };
+					};
+				}>;
+				payments?: Array<{
+					__typename?: 'Payment';
+					id: string;
+					state: string;
+					method: string;
+					amount: number;
+					metadata?: any | null;
+				}> | null;
+		  }
+		| { __typename?: 'OrderPaymentStateError'; errorCode: ErrorCode; message: string }
+		| { __typename?: 'OrderStateTransitionError'; errorCode: ErrorCode; message: string }
+		| { __typename?: 'PaymentDeclinedError'; errorCode: ErrorCode; message: string }
+		| { __typename?: 'PaymentFailedError'; errorCode: ErrorCode; message: string };
+};
+
+export type CollectionsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type CollectionsQuery = {
+	__typename?: 'Query';
+	collections: {
+		__typename?: 'CollectionList';
+		items: Array<{
+			__typename?: 'Collection';
+			id: string;
+			name: string;
+			slug: string;
+			parent?: { __typename?: 'Collection'; name: string } | null;
+			featuredAsset?: { __typename?: 'Asset'; id: string; preview: string } | null;
+		}>;
+	};
+};
+
+export type CollectionQueryVariables = Exact<{
+	slug?: InputMaybe<Scalars['String']>;
+	id?: InputMaybe<Scalars['ID']>;
+}>;
+
+export type CollectionQuery = {
+	__typename?: 'Query';
+	collection?: {
+		__typename?: 'Collection';
+		id: string;
+		name: string;
+		slug: string;
+		breadcrumbs: Array<{
+			__typename?: 'CollectionBreadcrumb';
+			id: string;
+			name: string;
+			slug: string;
+		}>;
+		children?: Array<{
+			__typename?: 'Collection';
+			id: string;
+			name: string;
+			slug: string;
+			featuredAsset?: { __typename?: 'Asset'; id: string; preview: string } | null;
+		}> | null;
+	} | null;
+};
+
+export type SetCustomerForOrderMutationVariables = Exact<{
+	input: CreateCustomerInput;
+}>;
+
+export type SetCustomerForOrderMutation = {
+	__typename?: 'Mutation';
+	setCustomerForOrder:
+		| { __typename?: 'AlreadyLoggedInError'; errorCode: ErrorCode; message: string }
+		| { __typename?: 'EmailAddressConflictError'; errorCode: ErrorCode; message: string }
+		| { __typename?: 'NoActiveOrderError'; errorCode: ErrorCode; message: string }
+		| {
+				__typename: 'Order';
+				id: string;
+				code: string;
+				active: boolean;
+				createdAt: any;
+				state: string;
+				currencyCode: CurrencyCode;
+				totalQuantity: number;
+				subTotal: number;
+				subTotalWithTax: number;
+				shippingWithTax: number;
+				totalWithTax: number;
+				taxSummary: Array<{
+					__typename?: 'OrderTaxSummary';
+					description: string;
+					taxRate: number;
+					taxTotal: number;
+				}>;
+				customer?: {
+					__typename?: 'Customer';
+					id: string;
+					firstName: string;
+					lastName: string;
+					emailAddress: string;
+				} | null;
+				shippingAddress?: {
+					__typename?: 'OrderAddress';
+					fullName?: string | null;
+					streetLine1?: string | null;
+					streetLine2?: string | null;
+					company?: string | null;
+					city?: string | null;
+					province?: string | null;
+					postalCode?: string | null;
+					countryCode?: string | null;
+					phoneNumber?: string | null;
+				} | null;
+				shippingLines: Array<{
+					__typename?: 'ShippingLine';
+					priceWithTax: number;
+					shippingMethod: { __typename?: 'ShippingMethod'; id: string; name: string };
+				}>;
+				lines: Array<{
+					__typename?: 'OrderLine';
+					id: string;
+					unitPriceWithTax: number;
+					linePriceWithTax: number;
+					quantity: number;
+					featuredAsset?: { __typename?: 'Asset'; id: string; preview: string } | null;
+					productVariant: {
+						__typename?: 'ProductVariant';
+						id: string;
+						name: string;
+						price: number;
+						product: { __typename?: 'Product'; id: string; slug: string };
+					};
+				}>;
+				payments?: Array<{
+					__typename?: 'Payment';
+					id: string;
+					state: string;
+					method: string;
+					amount: number;
+					metadata?: any | null;
+				}> | null;
+		  };
+};
+
+export type SetOrderShippingAddressMutationVariables = Exact<{
+	input: CreateAddressInput;
+}>;
+
+export type SetOrderShippingAddressMutation = {
+	__typename?: 'Mutation';
+	setOrderShippingAddress:
+		| { __typename?: 'NoActiveOrderError'; errorCode: ErrorCode; message: string }
+		| {
+				__typename: 'Order';
+				id: string;
+				code: string;
+				active: boolean;
+				createdAt: any;
+				state: string;
+				currencyCode: CurrencyCode;
+				totalQuantity: number;
+				subTotal: number;
+				subTotalWithTax: number;
+				shippingWithTax: number;
+				totalWithTax: number;
+				taxSummary: Array<{
+					__typename?: 'OrderTaxSummary';
+					description: string;
+					taxRate: number;
+					taxTotal: number;
+				}>;
+				customer?: {
+					__typename?: 'Customer';
+					id: string;
+					firstName: string;
+					lastName: string;
+					emailAddress: string;
+				} | null;
+				shippingAddress?: {
+					__typename?: 'OrderAddress';
+					fullName?: string | null;
+					streetLine1?: string | null;
+					streetLine2?: string | null;
+					company?: string | null;
+					city?: string | null;
+					province?: string | null;
+					postalCode?: string | null;
+					countryCode?: string | null;
+					phoneNumber?: string | null;
+				} | null;
+				shippingLines: Array<{
+					__typename?: 'ShippingLine';
+					priceWithTax: number;
+					shippingMethod: { __typename?: 'ShippingMethod'; id: string; name: string };
+				}>;
+				lines: Array<{
+					__typename?: 'OrderLine';
+					id: string;
+					unitPriceWithTax: number;
+					linePriceWithTax: number;
+					quantity: number;
+					featuredAsset?: { __typename?: 'Asset'; id: string; preview: string } | null;
+					productVariant: {
+						__typename?: 'ProductVariant';
+						id: string;
+						name: string;
+						price: number;
+						product: { __typename?: 'Product'; id: string; slug: string };
+					};
+				}>;
+				payments?: Array<{
+					__typename?: 'Payment';
+					id: string;
+					state: string;
+					method: string;
+					amount: number;
+					metadata?: any | null;
+				}> | null;
+		  };
+};
+
+export type OrderDetailFragment = {
+	__typename: 'Order';
+	id: string;
+	code: string;
+	active: boolean;
+	createdAt: any;
+	state: string;
+	currencyCode: CurrencyCode;
+	totalQuantity: number;
+	subTotal: number;
+	subTotalWithTax: number;
+	shippingWithTax: number;
+	totalWithTax: number;
+	taxSummary: Array<{
+		__typename?: 'OrderTaxSummary';
+		description: string;
+		taxRate: number;
+		taxTotal: number;
+	}>;
+	customer?: {
+		__typename?: 'Customer';
+		id: string;
+		firstName: string;
+		lastName: string;
+		emailAddress: string;
+	} | null;
+	shippingAddress?: {
+		__typename?: 'OrderAddress';
+		fullName?: string | null;
+		streetLine1?: string | null;
+		streetLine2?: string | null;
+		company?: string | null;
+		city?: string | null;
+		province?: string | null;
+		postalCode?: string | null;
+		countryCode?: string | null;
+		phoneNumber?: string | null;
+	} | null;
+	shippingLines: Array<{
+		__typename?: 'ShippingLine';
+		priceWithTax: number;
+		shippingMethod: { __typename?: 'ShippingMethod'; id: string; name: string };
+	}>;
+	lines: Array<{
+		__typename?: 'OrderLine';
+		id: string;
+		unitPriceWithTax: number;
+		linePriceWithTax: number;
+		quantity: number;
+		featuredAsset?: { __typename?: 'Asset'; id: string; preview: string } | null;
+		productVariant: {
+			__typename?: 'ProductVariant';
+			id: string;
+			name: string;
+			price: number;
+			product: { __typename?: 'Product'; id: string; slug: string };
+		};
+	}>;
+	payments?: Array<{
+		__typename?: 'Payment';
+		id: string;
+		state: string;
+		method: string;
+		amount: number;
+		metadata?: any | null;
+	}> | null;
+};
+
 export type DetailedProductFragment = {
 	__typename?: 'Product';
 	id: string;
@@ -3423,6 +3859,77 @@ export type SearchQuery = {
 	};
 };
 
+export const OrderDetailFragmentDoc = gql`
+	fragment OrderDetail on Order {
+		__typename
+		id
+		code
+		active
+		createdAt
+		state
+		currencyCode
+		totalQuantity
+		subTotal
+		subTotalWithTax
+		taxSummary {
+			description
+			taxRate
+			taxTotal
+		}
+		shippingWithTax
+		totalWithTax
+		customer {
+			id
+			firstName
+			lastName
+			emailAddress
+		}
+		shippingAddress {
+			fullName
+			streetLine1
+			streetLine2
+			company
+			city
+			province
+			postalCode
+			countryCode
+			phoneNumber
+		}
+		shippingLines {
+			shippingMethod {
+				id
+				name
+			}
+			priceWithTax
+		}
+		lines {
+			id
+			unitPriceWithTax
+			linePriceWithTax
+			quantity
+			featuredAsset {
+				id
+				preview
+			}
+			productVariant {
+				id
+				name
+				price
+				product {
+					id
+					slug
+				}
+			}
+		}
+		payments {
+			id
+			state
+			method
+			amount
+			metadata
+		}
+	}
+`;
 export const DetailedProductFragmentDoc = gql`
 	fragment DetailedProduct on Product {
 		id
@@ -3571,6 +4078,104 @@ export const UpdateCustomerEmailAddressDocument = gql`
 		}
 	}
 `;
+export const AvailableCountriesDocument = gql`
+	query availableCountries {
+		availableCountries {
+			id
+			name
+			code
+		}
+	}
+`;
+export const TransitionOrderToStateDocument = gql`
+	mutation transitionOrderToState($state: String!) {
+		transitionOrderToState(state: $state) {
+			...OrderDetail
+			... on ErrorResult {
+				errorCode
+				message
+			}
+		}
+	}
+	${OrderDetailFragmentDoc}
+`;
+export const AddPaymentToOrderDocument = gql`
+	mutation addPaymentToOrder($input: PaymentInput!) {
+		addPaymentToOrder(input: $input) {
+			...OrderDetail
+			... on ErrorResult {
+				errorCode
+				message
+			}
+		}
+	}
+	${OrderDetailFragmentDoc}
+`;
+export const CollectionsDocument = gql`
+	query collections {
+		collections {
+			items {
+				id
+				name
+				slug
+				parent {
+					name
+				}
+				featuredAsset {
+					id
+					preview
+				}
+			}
+		}
+	}
+`;
+export const CollectionDocument = gql`
+	query collection($slug: String, $id: ID) {
+		collection(slug: $slug, id: $id) {
+			id
+			name
+			slug
+			breadcrumbs {
+				id
+				name
+				slug
+			}
+			children {
+				id
+				name
+				slug
+				featuredAsset {
+					id
+					preview
+				}
+			}
+		}
+	}
+`;
+export const SetCustomerForOrderDocument = gql`
+	mutation setCustomerForOrder($input: CreateCustomerInput!) {
+		setCustomerForOrder(input: $input) {
+			...OrderDetail
+			... on ErrorResult {
+				errorCode
+				message
+			}
+		}
+	}
+	${OrderDetailFragmentDoc}
+`;
+export const SetOrderShippingAddressDocument = gql`
+	mutation setOrderShippingAddress($input: CreateAddressInput!) {
+		setOrderShippingAddress(input: $input) {
+			...OrderDetail
+			... on ErrorResult {
+				errorCode
+				message
+			}
+		}
+	}
+	${OrderDetailFragmentDoc}
+`;
 export const ProductDocument = gql`
 	query product($slug: String, $id: ID) {
 		product(slug: $slug, id: $id) {
@@ -3677,6 +4282,70 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
 				variables,
 				options
 			) as Promise<UpdateCustomerEmailAddressMutation>;
+		},
+		availableCountries(
+			variables?: AvailableCountriesQueryVariables,
+			options?: C
+		): Promise<AvailableCountriesQuery> {
+			return requester<AvailableCountriesQuery, AvailableCountriesQueryVariables>(
+				AvailableCountriesDocument,
+				variables,
+				options
+			) as Promise<AvailableCountriesQuery>;
+		},
+		transitionOrderToState(
+			variables: TransitionOrderToStateMutationVariables,
+			options?: C
+		): Promise<TransitionOrderToStateMutation> {
+			return requester<TransitionOrderToStateMutation, TransitionOrderToStateMutationVariables>(
+				TransitionOrderToStateDocument,
+				variables,
+				options
+			) as Promise<TransitionOrderToStateMutation>;
+		},
+		addPaymentToOrder(
+			variables: AddPaymentToOrderMutationVariables,
+			options?: C
+		): Promise<AddPaymentToOrderMutation> {
+			return requester<AddPaymentToOrderMutation, AddPaymentToOrderMutationVariables>(
+				AddPaymentToOrderDocument,
+				variables,
+				options
+			) as Promise<AddPaymentToOrderMutation>;
+		},
+		collections(variables?: CollectionsQueryVariables, options?: C): Promise<CollectionsQuery> {
+			return requester<CollectionsQuery, CollectionsQueryVariables>(
+				CollectionsDocument,
+				variables,
+				options
+			) as Promise<CollectionsQuery>;
+		},
+		collection(variables?: CollectionQueryVariables, options?: C): Promise<CollectionQuery> {
+			return requester<CollectionQuery, CollectionQueryVariables>(
+				CollectionDocument,
+				variables,
+				options
+			) as Promise<CollectionQuery>;
+		},
+		setCustomerForOrder(
+			variables: SetCustomerForOrderMutationVariables,
+			options?: C
+		): Promise<SetCustomerForOrderMutation> {
+			return requester<SetCustomerForOrderMutation, SetCustomerForOrderMutationVariables>(
+				SetCustomerForOrderDocument,
+				variables,
+				options
+			) as Promise<SetCustomerForOrderMutation>;
+		},
+		setOrderShippingAddress(
+			variables: SetOrderShippingAddressMutationVariables,
+			options?: C
+		): Promise<SetOrderShippingAddressMutation> {
+			return requester<SetOrderShippingAddressMutation, SetOrderShippingAddressMutationVariables>(
+				SetOrderShippingAddressDocument,
+				variables,
+				options
+			) as Promise<SetOrderShippingAddressMutation>;
 		},
 		product(variables?: ProductQueryVariables, options?: C): Promise<ProductQuery> {
 			return requester<ProductQuery, ProductQueryVariables>(

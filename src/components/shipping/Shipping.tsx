@@ -10,16 +10,16 @@ import {
 } from '@builder.io/qwik';
 import { APP_STATE, CUSTOMER_NOT_DEFINED_ID } from '~/constants';
 import { getActiveOrderQuery } from '~/graphql/queries';
-import { ActiveCustomer, ActiveOrder, ShippingAddress } from '~/types';
 import { isActiveCustomerValid, isShippingAddressValid } from '~/utils';
 import { execute } from '~/utils/api';
 import AddressForm from '../address-form/AddressForm';
 import LockClosedIcon from '../icons/LockClosedIcon';
 import ShippingMethodSelector from '../shipping-method-selector/ShippingMethodSelector';
+import { CreateAddressInput, CreateCustomerInput } from '~/generated/graphql';
 
 type IProps = {
 	onForward$: PropFunction<
-		(customer: Omit<ActiveCustomer, 'id'>, shippingAddress: ShippingAddress) => Promise<void>
+		(customer: CreateCustomerInput, shippingAddress: CreateAddressInput) => Promise<void>
 	>;
 };
 

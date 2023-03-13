@@ -25,9 +25,7 @@ import { Asset, Product } from '~/generated/graphql';
 
 export const useProductLoader = routeLoader$(async ({ params }) => {
 	const { slug } = cleanUpParams(params);
-	//const { product } = await execute<{ product: Product }>(getProductQuery({ slug }));
 	const { product } = await getProductBySlug(slug);
-	console.log(product);
 	return product as Product;
 });
 

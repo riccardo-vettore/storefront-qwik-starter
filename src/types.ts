@@ -1,6 +1,8 @@
+import { Collection, Country, Order } from '~/generated/graphql';
+
 export type AppState = {
 	collections: Collection[];
-	activeOrder: ActiveOrder;
+	activeOrder: Order;
 	showCart: boolean;
 	customer: ActiveCustomer;
 	shippingAddress: ShippingAddress;
@@ -17,22 +19,6 @@ export type Product = {
 	featuredAsset: FeaturedAsset;
 	assets: Asset[];
 	variants: Variant[];
-};
-
-type Breadcrumb = {
-	id: string;
-	name: string;
-	slug: string;
-};
-
-export type Collection = {
-	id: string;
-	slug: string;
-	name: string;
-	breadcrumbs?: Breadcrumb[];
-	parent?: { name: '__root_collection__' };
-	featuredAsset?: { id: string; preview: string };
-	children: any[];
 };
 
 type Facet = {
@@ -104,7 +90,7 @@ export type Line = {
 	productVariant: ProductVariant;
 };
 
-export type ActiveOrder = {
+/*export type ActiveOrder = {
 	__typename: string;
 	id: string;
 	code: string;
@@ -123,7 +109,7 @@ export type ActiveOrder = {
 	shippingLines: ShippingLine[];
 	lines: Line[];
 	errorCode?: string;
-};
+};*/
 
 export type OrderPriceFields = keyof Pick<
 	ActiveOrder,
@@ -133,43 +119,6 @@ export type OrderPriceFields = keyof Pick<
 type ShippingLine = {
 	priceWithTax: 1000;
 	shippingMethod: { id: string; name: string };
-};
-
-// search
-
-type ProductAsset = {
-	id: string;
-	preview: string;
-};
-
-type PriceWithTax = {
-	value: number;
-};
-
-type Item = {
-	productId: string;
-	productName: string;
-	slug: string;
-	productAsset: ProductAsset;
-	currencyCode: CurrencyCode;
-	priceWithTax: PriceWithTax;
-};
-
-type FilterFacetValueDetail = {
-	id: string;
-	name: string;
-	facet: Facet;
-};
-
-type FilterFacetValue = {
-	count: number;
-	facetValue: FilterFacetValueDetail;
-};
-
-export type Search = {
-	totalItems: number;
-	items: Item[];
-	facetValues: FilterFacetValue[];
 };
 
 export type FacetWithValues = {
@@ -210,11 +159,11 @@ export type EligibleShippingMethods = {
 	price: number;
 };
 
-export type Country = {
+/*export type Country = {
 	id: string;
 	code: string;
 	name: string;
-};
+};*/
 
 export type CurrencyCode =
 	/** United Arab Emirates dirham */

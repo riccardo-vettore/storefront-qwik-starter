@@ -10,29 +10,24 @@ import {
 import { routeLoader$ } from '@builder.io/qwik-city';
 import { ImageTransformerProps, useImageProvider } from '~/components/image/Image';
 import { APP_STATE, CUSTOMER_NOT_DEFINED_ID, IMAGE_RESOLUTIONS } from '~/constants';
-import {
-	getActiveOrderQuery,
-	getAvailableCountriesQuery,
-	getCollectionsQuery,
-} from '~/graphql/queries';
-import { ActiveCustomer, ActiveOrder, AppState, Collection, Country } from '~/types';
+import { getActiveOrderQuery } from '~/graphql/queries';
+import { ActiveCustomer, ActiveOrder, AppState } from '~/types';
 import { scrollToTop } from '~/utils';
 import { execute } from '~/utils/api';
 import Footer from '../components/footer/footer';
 import Header from '../components/header/header';
+import { getCollections } from '~/providers/collections/collections';
+import { Collection, Country } from '~/generated/graphql';
+import { getAvailableCountries } from '~/providers/checkout/checkout';
 
 export const useCollectionsLoader = routeLoader$(async () => {
-	const { collections: collections } = await execute<{
-		collections: { items: Collection[] };
-	}>(getCollectionsQuery());
-	return collections.items;
+	const { collections } = await getCollections();
+	return collections.items as Collection[];
 });
 
 export const useAvailableCountriesLoader = routeLoader$(async () => {
-	const { availableCountries } = await execute<{ availableCountries: Country[] }>(
-		getAvailableCountriesQuery()
-	);
-	return availableCountries;
+	const { availableCountries } = await getAvailableCountries();
+	return availableCountries as Country[];
 });
 
 export default component$(() => {

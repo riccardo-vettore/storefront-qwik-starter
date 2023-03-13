@@ -1,10 +1,19 @@
 import gql from 'graphql-tag';
 import { sdk } from '~/graphql-wrapper';
-import { SearchQuery, SearchQueryVariables } from '~/generated/graphql';
+import { SearchInput } from '~/generated/graphql';
 
-export const search = async (variables: SearchQueryVariables): Promise<SearchQuery> => {
-	return sdk.search(variables);
+export const search = async (searchInput: SearchInput) => {
+	return sdk.search({ input: { groupByProduct: true, ...searchInput } });
 };
+
+export const searchQueryWithCollectionSlug = async (collectionSlug: string) =>
+	search({ collectionSlug });
+
+export const searchQueryWithTerm = async (
+	collectionSlug: string,
+	term: string,
+	facetValueIds: string[]
+) => search({ collectionSlug, term, facetValueIds });
 
 export function getProductBySlug(slug: string) {
 	return sdk.product({ slug });

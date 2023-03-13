@@ -16,14 +16,8 @@ import {
 	groupFacetValues,
 	scrollToTop,
 } from '~/utils';
-import { search as searchGql } from '~/providers/products/products';
-import { FacetValueResult, SearchResponse, SearchResult } from '~/generated/graphql';
-
-export type MySearch = {
-	totalItems: number;
-	items: SearchResult[];
-	facetValues: FacetValueResult[];
-};
+import { searchQueryWithTerm } from '~/providers/products/products';
+import { SearchResponse } from '~/generated/graphql';
 
 export default component$(() => {
 	const state = useStore<{
@@ -44,7 +38,7 @@ export default component$(() => {
 
 	const executeQuery = $(
 		async (term: string, activeFacetValueIds: string[]) =>
-			await searchGql({ input: { collectionSlug: '', term, facetValueIds: activeFacetValueIds } })
+			await searchQueryWithTerm('', term, activeFacetValueIds)
 	);
 
 	useBrowserVisibleTask$(async () => {

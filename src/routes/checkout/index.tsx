@@ -5,15 +5,13 @@ import ChevronRightIcon from '~/components/icons/ChevronRightIcon';
 import Payment from '~/components/payment/Payment';
 import Shipping from '~/components/shipping/Shipping';
 import { APP_STATE } from '~/constants';
-import {
-	addPaymentToOrderMutation,
-	setCustomerForOrderMutation,
-	setOrderShippingAddressMutation,
-	transitionOrderToStateMutation,
-} from '~/graphql/mutations';
-import { ActiveCustomer, ActiveOrder, ShippingAddress } from '~/types';
 import { isEnvVariableEnabled, scrollToTop } from '~/utils';
-import { execute } from '~/utils/api';
+import { addPaymentToOrderMutation, transitionOrderToState } from '~/providers/checkout/checkout';
+import { CreateAddressInput, CreateCustomerInput, Order } from '~/generated/graphql';
+import {
+	setCustomerForOrder as setCustomerForOrderMutation,
+	setOrderShippingAddress as setOrderShippingAddressMutation,
+} from '~/providers/orders/order';
 
 type Step = 'SHIPPING' | 'PAYMENT' | 'CONFIRMATION';
 
@@ -32,13 +30,11 @@ export default component$(() => {
 	});
 
 	const confirmPayment = $(async () => {
-		await execute(transitionOrderToStateMutation());
-		const { addPaymentToOrder: activeOrder } = await execute<{
-			addPaymentToOrder: ActiveOrder;
-		}>(addPaymentToOrderMutation());
-		appState.activeOrder = activeOrder;
+		await transitionOrderToState();
+		const { addPaymentToOrder } = await addPaymentToOrderMutation();
+		appState.activeOrder = addPaymentToOrder as Order;
 		scrollToTop();
-		window.location.href = `/checkout/confirmation/${activeOrder.code}`;
+		window.location.href = `/checkout/confirmation/${(addPaymentToOrder as Order).code}`;
 	});
 
 	return (
@@ -73,19 +69,17 @@ export default component$(() => {
 								{state.step === 'SHIPPING' ? (
 									<Shipping
 										onForward$={async (
-											customer: Omit<ActiveCustomer, 'id'>,
-											shippingAddress: ShippingAddress
+											customer: CreateCustomerInput,
+											shippingAddress: CreateAddressInput
 										) => {
-											const { setCustomerForOrder } = await execute<{
-												setCustomerForOrder: ActiveOrder;
-											}>(setCustomerForOrderMutation(customer));
+											const { setCustomerForOrder } = await setCustomerForOrderMutation(customer);
 
-											if (!setCustomerForOrder.errorCode) {
-												const { setOrderShippingAddress } = await execute<{
-													setOrderShippingAddress: ActiveOrder;
-												}>(setOrderShippingAddressMutation(shippingAddress));
+											if (setCustomerForOrder.__typename === 'Order') {
+												const { setOrderShippingAddress } = await setOrderShippingAddressMutation(
+													shippingAddress
+												);
 
-												if (!setOrderShippingAddress.errorCode) {
+												if (setOrderShippingAddress.__typename !== 'NoActiveOrderError') {
 													if (isEnvVariableEnabled('VITE_SHOW_PAYMENT_STEP')) {
 														state.step = 'PAYMENT';
 													} else {
